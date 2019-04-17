@@ -1,2 +1,12 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p>Bienvenido a {{title}}</p>
+  
+{{#unless home}}
+<div><a href="/login">Inicia Sesion</a></div>
+<div><a href="/signup">Regìstrate</a></div>
+{{/unless}}
+
+  {{#if home}}
+  <p> tú eres {{nombre}}  {{apellido}} y tienes eres un {{rol}}</p>
+ <div> <a href="/logout">Salir</a> </div>
+{{/if}}

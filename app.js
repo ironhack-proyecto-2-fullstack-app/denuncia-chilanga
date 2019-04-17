@@ -66,8 +66,8 @@ app.locals.title = 'Denuncia Chilanga!';
 
 const index = require('./routes/index');
 app.use('/', index);
-//const pass = require('./routes/pass');
-//app.use('/', pass);
+const pass = require('./routes/pass');
+app.use('/', pass);
 
 console.log("firs commit")
 

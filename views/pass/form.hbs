@@ -1,0 +1,58 @@
+<form {{#if login}} action="/login" 
+{{else}} action="/signup" {{/if}} 
+method="POST">
+ {{#unless login}}
+  <div>
+    <label for="">
+      Nombre(s):
+      <input  name="nombre" type= "text" placeholder="Tu(s) nombre(s)" style="text-transform:uppercase;">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Apellido(s):
+      <input  name="apellido" type= "text" placeholder="Tu(s) apellido(s)" style="text-transform:uppercase;">
+    </label>
+  </div>
+  {{/unless}}
+  <div>
+    <label for="">
+      E-mail:
+      <input  name="email" type="email" placeholder="ej@ejemplo.com">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Contraseña:
+      <input type="password" name="password">
+    </label>
+  </div>
+
+  {{#unless login}}
+  <div>
+    <label for="">
+      Confirma tu contraseña:
+      <input type="password" name="passwordConfirm">
+    </label>
+  </div>
+  {{/unless}}
+
+  <button type="submit">
+    {{#if login}}
+    Iniciar sesión
+    {{else}}
+    Crear cuenta
+    {{/if}}
+  </button>
+
+  {{#if err}}
+  <p style="color:red">{{err}}</p>
+  {{/if}}
+
+  {{#if login}}
+  ¿No tienes cuenta?, regìstrate <a href="/signup">Aquí</a>
+  {{else}}
+  ¿Ya tienes cuenta?, ingresa <a href="/login">Aquí</a>
+  {{/if}}
+
+</form>
