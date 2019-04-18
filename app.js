@@ -68,6 +68,10 @@ const index = require('./routes/index');
 app.use('/', index);
 const pass = require('./routes/pass');
 app.use('/', pass);
+const users = require('./routes/users');
+app.use('/users', users);
+
+
 
 console.log("firs commit")
 

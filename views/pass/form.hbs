@@ -5,13 +5,13 @@ method="POST">
   <div>
     <label for="">
       Nombre(s):
-      <input  name="nombre" type= "text" placeholder="Tu(s) nombre(s)" style="text-transform:uppercase;">
+      <input  name="nombre" type= "text" placeholder="Tu(s) nombre(s)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
     </label>
   </div>
   <div>
     <label for="">
       Apellido(s):
-      <input  name="apellido" type= "text" placeholder="Tu(s) apellido(s)" style="text-transform:uppercase;">
+      <input  name="apellido" type= "text" placeholder="Tu(s) apellido(s)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
     </label>
   </div>
   {{/unless}}

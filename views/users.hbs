@@ -1,0 +1,11 @@
+<h1>Catálogo de Usuarios</h1>
+<ul>
+    {{#each users as |u|}}
+    <li>   
+         
+        <strong>{{u.nombre}} {{u.apellido}}    Rol: {{u.rol}}    Correo:{{u.email}}</strong>
+        <a  href ="/users/edit/{{u._id}}"> Editar </a>
+        
+          </li>
+    {{/each}}
+</ul>
