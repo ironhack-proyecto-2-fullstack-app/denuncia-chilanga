@@ -1,0 +1,16 @@
+<h1>Catálogo de Categorías:</h1>
+
+<a href="/categoria/new">Nueva</a>
+
+<ul>
+    {{#each categorias as |c|}}
+    <li>   
+         
+        <strong>{{c.orden}} {{c.descripcion}}</strong>
+        <a  href ="/categoria/edit/{{c._id}}"> Editar </a>
+
+          </li>
+    {{/each}}
+</ul>
+
+<a href="/">Inicio</a>

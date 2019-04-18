@@ -70,6 +70,8 @@ const pass = require('./routes/pass');
 app.use('/', pass);
 const users = require('./routes/users');
 app.use('/users', users);
+const categoria = require('./routes/categoria');
+app.use('/categoria', categoria);
 
 
 
