@@ -1,0 +1,42 @@
+<form 
+action =""  
+method="POST">
+  <div>
+    <label for="">
+      Nombre:
+      <input  name="nombre" value="{{nombre}}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Apellido:
+      <input name="apellido" value="{{apellido}}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Correo:
+      <input name="email" value="{{email}}">
+    </label>
+  </div>
+  <div>
+    <label for="">
+    <select id="" name ="rol">
+        <option value="{{rol}}"> {{rol}} </option>
+        <option value="ADMIN">ADMIN</option>
+        <option value="SUPERVISOR">SUPERVISOR</option>
+        <option value="CIUDADANO">CIUDADANO</option>
+      </select>
+
+    </label>
+  </div>
+  
+
+  <button type="submit">
+    Guardar
+  </button>
+
+  <a href="/users">Ver lista de usuarios</a>
+
+
+</form>

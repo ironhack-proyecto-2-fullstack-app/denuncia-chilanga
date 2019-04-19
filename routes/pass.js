@@ -21,16 +21,7 @@ function aseguraDeslogueo(req,res,next){
   }
 };
 
-function aseguraAdmin(req,res,next){
-  let rol = undefined;
-  var validarol=function(){
-    if(req.user == undefined) {return}
-    else {return rol = req.user.rol}
-  };
-  validarol();
-  if (rol == 'ADMIN'){return next()}
-  else{ res.redirect('/')}  
-}
+
 
 // Termina los middlewares
 //Para ingresar a los formularios

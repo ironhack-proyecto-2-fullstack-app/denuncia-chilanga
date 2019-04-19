@@ -4,6 +4,7 @@ const User = require("../models/User");
 const passport = require("passport");
 const Denuncia = require('../models/Denuncia');
 const uploadCloud = require('../helpers/cloudinary');
+const Categoria = require('../models/Categoria')
 
 //middlewares para saber si está logueado:
 
@@ -28,7 +29,13 @@ router.get('/',aseguraDeslogueo, (req, res, next) => {
 });
 
 router.get('/generar-denuncia', (req, res) => {
-  res.render('formulario-denuncia')
+   
+  Categoria.find().sort({orden:1})
+  .then(categorias =>{
+  
+    res.render('formulario-denuncia', {categorias})
+    })
+  ;
 });
 
 router.post('/generar-denuncia', uploadCloud.array('images'), (req, res) => {

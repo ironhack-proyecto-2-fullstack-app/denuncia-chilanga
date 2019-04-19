@@ -25,13 +25,10 @@
   <label for="categoria">Categoría</label>
   <select name="categoria" id="">
     <option value="" selected disabled>Selecciona una categoría</option>
-    <option value="infraccion-vehicular">Infracción vehicular</option>
-    <option value="infraccion-comercial">Infracción comercial</option>
-    <option value="rotura">Rotura</option>
-    <option value="mantenimiento">Mantenimiento</option>
-    <option value="obra-en-curso">Obra en curso</option>
+    {{#each categorias as |c|}}
+    <option value="{{_id}}">{{descripcion}}</option>
+    {{/each}}
   </select>
   </div>
-
     <button type="submit">Denuncia!</button>
 </form>

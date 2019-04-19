@@ -10,3 +10,11 @@
   <p> tú eres {{nombre}}  {{apellido}} y tienes eres un {{rol}}</p>
  <div> <a href="/logout">Salir</a> </div>
 {{/if}}
+
+{{#if admin}}
+ <div> <a href="/users">Usuarios</a> </div>
+ <div> <a href="/categoria">Categorias</a> </div>
+
+{{/if}}
+
+<div><a href="/generar-denuncia">Levanta una denuncia</a></div>

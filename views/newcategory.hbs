@@ -1,0 +1,25 @@
+<form 
+action =""  
+method="POST">
+  <div>
+    <label for="">
+      Orden:
+      <input  name="orden" value="{{orden}}" type="number">
+    </label>
+  </div>
+  <div>
+    <label for="">
+      Descripciòn:
+      <input name="descripcion" value="{{descripcion}}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+    </label>
+  </div>
+  
+
+  <button type="submit">
+    Guardar
+  </button>
+
+  <a href="/categoria">Ver lista de categorias</a>
+
+
+</form>
