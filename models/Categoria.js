@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const categoriaSchema = new Schema(
   {
-    orden:Number,
-    descripcion:{type: String, unique:true}
+    orden: Number,
+    descripcion:{type: String, unique: true}
   }
 );
 

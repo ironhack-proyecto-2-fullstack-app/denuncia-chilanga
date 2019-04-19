@@ -12,7 +12,7 @@ const userSchema = new Schema(
     enum:["CIUDADANO", "SUPERVISOR","ADMIN"]
     ,default:"CIUDADANO"}
   },
-  { timestamps: true }
+  { timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"} }
 );
 
 userSchema.plugin(passportLocalMongoose, {

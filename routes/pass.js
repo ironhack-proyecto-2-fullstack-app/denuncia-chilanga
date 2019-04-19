@@ -46,7 +46,7 @@ router.get("/signup", aseguraDeslogueo,(req, res) => {
 // Para generar un registro:
 
 router.post("/signup", (req, res) => {
-  let { email,password, nombre, apellido, passwordConfirm } = req.body;
+  let { email, password, nombre, apellido, passwordConfirm } = req.body;
 
   if (password !== passwordConfirm)
     return res.render("pass/form", {
@@ -71,14 +71,14 @@ router.post(
 
 // Para cerrar sesión:
 
-router.get("/logout" ,(req, res) => {
+router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
 
 // Cuando se loguea, debemos de enviar a la página principal:
 
-router.get("/home",aseguraLogueo ,(req, res) => {
+router.get("/home",aseguraLogueo, (req, res) => {
 var rol = req.user.rol;
 var nombre = req.user.nombre;
 var apellido = req.user.apellido;

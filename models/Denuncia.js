@@ -5,11 +5,11 @@ const denunciaSchema = new Schema(
   {
 user: {      
   type: Schema.Types.ObjectId,
-  required: true,
+  required: false,
   ref: "User"},
 folio: {
   type: Number, 
-  required:true, 
+  required: false, 
   unique:true},
 titulo: {
   type:String, 
@@ -31,7 +31,7 @@ estatus:{type:String,
   required: true, 
   enum:["Abierta","Cerrada","En Proceso"],
   default:"Abierta"},
-categoria:{  type: Schema.Types.ObjectId,
+categoria:{  type: String,
   required: true,
   ref: "Categoria"}
   },

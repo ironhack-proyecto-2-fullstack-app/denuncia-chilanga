@@ -12,7 +12,7 @@ const comentarioSchema = new Schema(
       required: true,
       ref: "User"},
     descripcion:{type: String, unique:true}
-  }, {timestamps:true}
+  }, {timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"}}
 );
 
 module.exports = mongoose.model("Comentario", comentarioSchema);

@@ -1,0 +1,37 @@
+<form action="/generar-denuncia" method="POST" enctype="multipart/form-data">
+  <h2>Ingresa la información de tu denuncia</h2>
+  
+  <div>
+  <label for="titulo">Título</label>
+  <input type="text" name="titulo">
+  </div>
+  
+  <div>
+  <label for="descripcion">Descripción</label>
+  <input type="textarea" name="descripcion">
+  </div>
+  
+  <div>
+  <label for="ubicacion">Ubicación</label>
+  <input type="text" name="ubicacion">
+  </div>
+
+  <div>
+  <label for="images">Imagen(es)</label>
+  <input type="file" name="images" multiple>
+  </div>
+
+  <div>
+  <label for="categoria">Categoría</label>
+  <select name="categoria" id="">
+    <option value="" selected disabled>Selecciona una categoría</option>
+    <option value="infraccion-vehicular">Infracción vehicular</option>
+    <option value="infraccion-comercial">Infracción comercial</option>
+    <option value="rotura">Rotura</option>
+    <option value="mantenimiento">Mantenimiento</option>
+    <option value="obra-en-curso">Obra en curso</option>
+  </select>
+  </div>
+
+    <button type="submit">Denuncia!</button>
+</form>

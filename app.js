@@ -69,7 +69,5 @@ app.use('/', index);
 const pass = require('./routes/pass');
 app.use('/', pass);
 
-console.log("firs commit")
-
 
 module.exports = app;
