@@ -9,8 +9,9 @@ user: {
   ref: "User"},
 folio: {
   type: Number, 
-  required: false, 
-  unique:true},
+  required: false 
+  ,unique:true
+},
 titulo: {
   type:String, 
   requires:true},
