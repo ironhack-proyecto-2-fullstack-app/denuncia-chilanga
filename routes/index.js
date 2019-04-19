@@ -48,6 +48,6 @@ router.post('/generar-denuncia', uploadCloud.array('images'), (req, res) => {
   .catch(err => {
     console.log(`Hubo un error subiendo tu denuncia: ${err}`)
   })
-})
+});
 
 module.exports = router;
