@@ -21,7 +21,7 @@ function createFolio(){
   return folio++;
 }
 
-// termina middleware
+// termina middleware;
 
 /* GET home page */
 router.get('/',aseguraDeslogueo, (req, res, next) => {
