@@ -72,7 +72,8 @@ const users = require('./routes/users');
 app.use('/users', users);
 const categoria = require('./routes/categoria');
 app.use('/categoria', categoria);
-
+const denuncia = require('./routes/denuncia');
+app.use('/denuncia', denuncia);
 
 
 

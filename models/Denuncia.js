@@ -32,7 +32,7 @@ estatus:{type:String,
   required: true, 
   enum:["Abierta","Cerrada","En Proceso"],
   default:"Abierta"},
-categoria:{  type: String,
+categoria:{  type: Schema.Types.ObjectId,
   required: true,
   ref: "Categoria"}
   },

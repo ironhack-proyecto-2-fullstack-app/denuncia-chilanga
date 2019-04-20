@@ -16,10 +16,6 @@ function aseguraDeslogueo(req,res,next){
   }
 };
 
-function createFolio(){
-  let folio = 1000;
-  return folio++;
-}
 
 // termina middleware;
 
@@ -29,25 +25,39 @@ router.get('/',aseguraDeslogueo, (req, res, next) => {
 });
 
 router.get('/generar-denuncia', (req, res) => {
-   
   Categoria.find().sort({orden:1})
   .then(categorias =>{
-  
     res.render('formulario-denuncia', {categorias})
     })
-  ;
-});
+      ;});
 
 router.post('/generar-denuncia', uploadCloud.array('images'), (req, res) => {
-  console.log(req.body);
-  console.log(req.files);
+  
+  let usr = () =>{
+    if(req.user == undefined){return null}
+    else {return req.user.id}
+  };
+
+  req.body.user = usr();
   req.body.images = req.files.map(file => file.url);
+  const {id} = req.params
+ Denuncia.findOne({}).sort({folio:-1}).limit(1)
+.then(d => { req.body.folio = d.folio + 1; 
+
+Denuncia.create(req.body).then(() => {
+  console.log(req.body);
+  let folio = req.body.folio;
+  
+    res.redirect('/denuncias/'+folio);
+})
+.catch(err => {console.log(`Hubo un error subiendo tu denuncia: ${err}`)})
+})
+.catch (err => { req.body.folio = 1; 
   Denuncia.create(req.body).then(() => {
     res.redirect('/');
-  })
-  .catch(err => {
-    console.log(`Hubo un error subiendo tu denuncia: ${err}`)
-  })
+})
+.catch(err => {console.log(`Hubo un error subiendo tu denuncia: ${err}`)})
+})
 });
 
 module.exports = router;

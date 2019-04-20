@@ -1,0 +1,11 @@
+Esta es la vista de las denuncias:
+parámetros: {{Folio}} {{fecha_ini}} {{fecha_fin}} {{Category}}
+
+{{#if uno}}
+folio: {{denuncias.folio}} Titulo: {{denuncias.titulo}} ubicacion: {{denuncias.ubicacion.address}}
+{{/if}}
+{{#unless uno}}
+{{#each denuncias}}
+folio: {{folio}} Titulo: {{titulo}} ubicacion: {{ubicacion.address}}
+{{/each}}
+{{/unless}}
