@@ -15,9 +15,24 @@ function aseguraDeslogueo(req,res,next){
     res.redirect('/home')
   }
 };
-
-
 // termina middleware
+
+//Funcion para poner Fecha:
+
+ponefecha =() =>{
+  var year = new Date;
+  var mes = new Date;
+  var day = new Date;
+  var c = year.getFullYear();
+  var b = mes.getMonth()+1;
+  var a = day.getDate();
+  var fecha;
+  if ( b < 10 ){b ='0'+b};
+  if (a < 10 ){ a = '0'+a};
+   fecha = c+'-'+b+'-'+a
+return  fecha
+};
+
 
 /* GET home page */
 router.get('/',aseguraDeslogueo, (req, res, next) => {
@@ -37,7 +52,7 @@ router.post('/generar-denuncia', uploadCloud.array('images'), (req, res) => {
     if(req.user == undefined){return null}
     else {return req.user.id}
   };
-
+  req.body.fecha = ponefecha();
   req.body.user = usr();
   req.body.images = req.files.map(file => file.url);
   const {id} = req.params

@@ -1,13 +1,10 @@
 <script> 
 function funcion(string){
   if (string == "folio"){ document.form.folio.disabled = false; 
-                          document.form.fecha_ini.disabled = true; 
-                          document.form.fecha_fin.disabled = true;
-                          document.form.fecha_ini.value =null;
-                          document.form.fecha_fin.value =null; } 
+                          document.form.fecha.disabled = true; 
+                          document.form.fecha.value =null; } 
   if (string == "fecha"){ document.form.folio.disabled = true; 
-                          document.form.fecha_ini.disabled = false; 
-                          document.form.fecha_fin.disabled = false;
+                          document.form.fecha.disabled = false; 
                           document.form.folio.value = null }; 
 }; 
 </script> 
@@ -17,8 +14,7 @@ Buscar por Folio:
 <input type="number" name="folio" disabled /> 
 <div>Buscar por Fecha:
 <input type="radio" name="busqueda" onclick="funcion('fecha')" /> 
-<input type="date" name="fecha_ini" disabled /> 
-<input type="date" name="fecha_fin" disabled /> 
+<input type="date" name="fecha" disabled /> 
 </div>
  <div>
   <label for="categoria">Categoría</label>
@@ -33,3 +29,5 @@ Buscar por Folio:
   <button type="submit" ><a>Buscar</a> </button>  
   </div>
 </form>
+
+<div> <a href="/">Inicio</a> </div>

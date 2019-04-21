@@ -36,8 +36,7 @@ else {
 router.get("/",async(req,res)=>{
   const url = req.url;
   const Folio = devuelveParametro(url,'folio')
-  const fecha_ini = devuelveParametro(url,'fecha_ini')
-  const fecha_fin = devuelveParametro(url,'fecha_fin')
+  const Fecha = devuelveParametro(url,'fecha')
   const Category = devuelveParametro(url,'categoria')
   var pagina = 1;
 
@@ -57,22 +56,22 @@ router.get("/",async(req,res)=>{
       
     };
    // Buscas solo por categoria, tiene lo demás apagado
-    if (Category !== '*' && fecha_ini == undefined && fecha_fin == undefined && Folio == undefined){
+    if (Category !== '*' && Fecha == undefined && Folio == undefined){
       Denuncia.find({categoria: Category})
       .then(denuncias=>{
         console.log(denuncias);
        return res.render('denuncias', {denuncias, uno:false, Folio})
       })};
     // buscas todas las categorías, y tienes todo lo demás apagado:
-    if (Category == '*' && fecha_ini == undefined && fecha_fin == undefined && Folio == undefined){
+    if (Category == '*' && Fecha == undefined && Folio == undefined){
        Denuncia.find({})
        .then(denuncias=>{
        console.log(denuncias);
        return res.render('denuncias', {denuncias, uno:false, Folio})
         })};
     // Buscas por una fecha en específico, en todas las categorías:
-    if (Category == '*' && fecha_ini !== undefined && fecha_fin !== undefined && Folio == undefined){
-      Denuncia.find({})
+    if (Category == '*' && Fecha !== undefined && Folio == undefined){
+      Denuncia.find({fecha :Fecha})
       .then(denuncias=>{
       console.log(denuncias);
       return res.render('denuncias', {denuncias, uno:false, Folio})

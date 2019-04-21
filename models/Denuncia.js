@@ -12,6 +12,7 @@ folio: {
   required: false 
   ,unique:true
 },
+fecha:String,
 titulo: {
   type:String, 
   requires:true},
