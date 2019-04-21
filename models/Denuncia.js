@@ -24,12 +24,12 @@ const denunciaSchema = new Schema(
         type: String,
         default: "Point"
       },
-      address: {
-        type: String
-      },
-      colonia: {
-        type: String
-      },
+      // address: {
+      //   type: String
+      // },
+      // colonia: {
+      //   type: String
+      // },
       coordenadas: {
         type: [Number]
       }
@@ -45,5 +45,7 @@ const denunciaSchema = new Schema(
   },
   { timestamps: true }
 );
+
+denunciaSchema.index({ ubicacion: "2dsphere" });
 
 module.exports = mongoose.model("Denuncia", denunciaSchema);

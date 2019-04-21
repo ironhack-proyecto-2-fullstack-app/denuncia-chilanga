@@ -11,16 +11,16 @@
     <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
   </div>
 
-  <div>
+  <div style="display: none">
     <label for="">
       Longitude:
-      <input id="lng" type="text" name="lng" value="{{location.coordinates.[0]}}" />
+      <input id="lng" type="text" name="lng" value="{{ubicacion.coordenadas.[0]}}" />
     </label>
   </div>
-  <div>
+  <div style="display: none">
     <label for="">
       Latitude:
-      <input id="lat" type="text" name="lat" value="{{location.coordinates.[1]}}" />
+      <input id="lat" type="text" name="lat" value="{{ubicacion.coordenadas.[1]}}" />
     </label>
   </div>
   <div id="search"></div>
@@ -46,7 +46,7 @@
 
 <script>
 
-  const ironhackMEX = [-99.1711, 19.399];
+  const cdmx = [-99.133209, 19.432608];
 
   mapboxgl.accessToken =
     "pk.eyJ1IjoidG9tYXNmcmFuY2lzY29hciIsImEiOiJjanUwbHYzdGEzZ2piNDBwY2hsMWFrcG1nIn0.I9dBd93c-Yph7coxBiWO6A";
@@ -61,30 +61,31 @@
   var map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/navigation-preview-day-v2",
-    center: ironhackMEX,
-    zoom: 15
+    center: cdmx,
+    zoom: 12
   });
 
-  // if (navigator.geolocation) {
-  //   navigator.geolocation.getCurrentPosition(
-  //     function(position) {
-  //       const user_location = [
-  //         position.coords.longitude,
-  //         position.coords.latitude
-  //       ];
-  //       map.setCenter(user_location);
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        const user_location = [
+          position.coords.longitude,
+          position.coords.latitude
+        ];
+        map.setCenter(user_location);
+        map.setZoom(14);
 
-  //       // const userLocationMarker = new mapboxgl.Marker({ color: "red" })
-  //       //   .setLngLat(user_location)
-  //       //   .addTo(map);
-  //     },
-  //     function() {
-  //       console.log("Error in the geolocation service.");
-  //     }
-  //   );
-  // } else {
-  //   console.log("Browser does not support geolocation.");
-  // }
+        {{!-- const userLocationMarker = new mapboxgl.Marker({ color: "red" })
+          .setLngLat(user_location)
+          .addTo(map); --}}
+      },
+      function () {
+        console.log("Error in the geolocation service.");
+      }
+    );
+  } else {
+    console.log("Browser does not support geolocation.");
+  }
 
   geocoder.on("result", res => {
     console.log(res.result);
