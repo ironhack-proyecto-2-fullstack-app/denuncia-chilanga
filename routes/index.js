@@ -62,8 +62,7 @@ router.post('/generar-denuncia', uploadCloud.array('images'), (req, res) => {
 Denuncia.create(req.body).then(() => {
   console.log(req.body);
   let folio = req.body.folio;
-  
-    res.redirect('/denuncias/'+folio);
+    res.redirect('/denuncia/'+folio);
 })
 .catch(err => {console.log(`Hubo un error subiendo tu denuncia: ${err}`)})
 })

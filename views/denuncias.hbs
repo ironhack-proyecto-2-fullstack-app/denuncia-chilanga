@@ -1,12 +1,9 @@
-Esta es la vista de las denuncias:
-parámetros: {{Folio}} {{fecha_ini}} {{fecha_fin}} {{Category}}
 
 {{#if uno}}
-folio: {{denuncias.folio}} Titulo: {{denuncias.titulo}} ubicacion: {{denuncias.ubicacion.address}}
+ <a href="/denuncia/{{denuncias.folio}}">{{denuncias.folio}} - {{denuncias.titulo}} - {{denuncias.ubicacion.address}} </a>
 {{/if}}
 {{#unless uno}}
 {{#each denuncias}}
-folio: {{folio}} Titulo: {{titulo}} ubicacion: {{ubicacion.address}}
-crea: {{createdAt}}
+ <div><a href="/denuncia/{{folio}}">{{folio}} - {{titulo}} - {{ubicacion.address}}</a></div>
 {{/each}}
 {{/unless}}
