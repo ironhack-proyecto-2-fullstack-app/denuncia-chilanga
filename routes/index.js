@@ -48,10 +48,24 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
     .limit(1)
     .then(d => {
       req.body.folio = d.folio + 1;
+      let {titulo, descripcion, lng, lat, categoria, user, images, folio} = req.body;
+      let denuncia = {
+        titulo,
+        descripcion,
+        ubicacion: {
+          type: "Point",
+          coordenadas: [lng, lat]
+        },
+        categoria,
+        user,
+        images,
+        folio
+      }
 
-      Denuncia.create(req.body)
+
+      Denuncia.create(denuncia)
         .then(() => {
-          console.log(req.body);
+          console.log('This is the req.body: ', req.body);
           let folio = req.body.folio;
 
           res.redirect("/denuncias/" + folio);
