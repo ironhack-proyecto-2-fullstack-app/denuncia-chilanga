@@ -1,20 +1,21 @@
+<div id="landing-cont">
 <h1>{{title}}</h1>
-<p>Bienvenido a {{title}}</p>
-  
+
 {{#unless home}}
-<div><a href="/login">Inicia Sesion</a></div>
-<div><a href="/signup">Regìstrate</a></div>
+<button><a href="/signup">Regístrate</a></button>
+<button><a href="/login">Inicia Sesion</a></button>
 {{/unless}}
 
-  {{#if home}}
-  <p> tú eres {{nombre}}  {{apellido}} y tienes eres un {{rol}}</p>
- <div> <a href="/logout">Salir</a> </div>
+{{#if home}}
+<p> tú eres {{nombre}} {{apellido}} y tienes eres un {{rol}}</p>
+<button><a href="/logout">Salir</a></button>
 {{/if}}
 
 {{#if admin}}
- <div> <a href="/users">Usuarios</a> </div>
- <div> <a href="/categoria">Categorias</a> </div>
+<button><a href="/users">Usuarios</a></div>
+<button><a href="/categoria">Categorias</a></button>
 
 {{/if}}
 
-<div><a href="/generar-denuncia">Levanta una denuncia</a></div>
+<button><a href="/generar-denuncia">Levanta una denuncia</a></button>
+</div>

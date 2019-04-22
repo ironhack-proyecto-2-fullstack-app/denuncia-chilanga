@@ -1,38 +1,44 @@
-<form action="/generar-denuncia" method="POST" enctype="multipart/form-data">
-  <h2>Ingresa la información de tu denuncia</h2>
+<section id="formulario-denuncia-cont">
 
-  <div>
+<h2>Ingresa la información de tu denuncia</h2>
+<form action="/generar-denuncia" method="POST" enctype="multipart/form-data" class="form" id="formulario-denuncia">
+
+  <div class="formulario-denuncia-inner-cont">
     <label for="titulo">Título</label>
     <input type="text" name="titulo">
   </div>
 
-  <div>
+  <div class="formulario-denuncia-inner-cont">
     <label for="descripcion">Descripción</label>
-    <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+    <textarea name="descripcion" id="descripcion" cols="30"
+      rows="10"></textarea>
   </div>
 
-  <div style="display: none">
+  <div style="display: none" class="formulario-denuncia-inner-cont">
     <label for="">
       Longitude:
       <input id="lng" type="text" name="lng" value="{{ubicacion.coordenadas.[0]}}" />
     </label>
   </div>
-  <div style="display: none">
+  <div style="display: none" class="formulario-denuncia-inner-cont">
     <label for="">
       Latitude:
       <input id="lat" type="text" name="lat" value="{{ubicacion.coordenadas.[1]}}" />
     </label>
   </div>
+  <div class="formulario-denuncia-inner-cont">
+  <label for="">Ubicación</label>
   <div id="search"></div>
+  </div>
 
   <div id='map' style='width: 400px; height: 300px;'></div>
 
-  <div>
+  <div class="formulario-denuncia-inner-cont">
     <label for="images">Imagen(es)</label>
     <input type="file" name="images" multiple>
   </div>
 
-  <div>
+  <div class="formulario-denuncia-inner-cont">
     <label for="categoria">Categoría</label>
     <select name="categoria" id="">
       <option value="" selected disabled>Selecciona una categoría</option>
@@ -43,6 +49,7 @@
   </div>
   <button type="submit">Denuncia!</button>
 </form>
+</section>
 
 <script>
 
@@ -75,9 +82,6 @@
         map.setCenter(user_location);
         map.setZoom(14);
 
-        {{!-- const userLocationMarker = new mapboxgl.Marker({ color: "red" })
-          .setLngLat(user_location)
-          .addTo(map); --}}
       },
       function () {
         console.log("Error in the geolocation service.");
