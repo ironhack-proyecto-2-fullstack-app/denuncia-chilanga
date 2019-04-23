@@ -1,11 +1,46 @@
-Esta es la vista de las denuncias:
-parámetros: {{Folio}} {{fecha_ini}} {{fecha_fin}} {{Category}}
+Esta es la vista de las denuncias: <br>
+Parámetros: {{Folio}} {{fecha_ini}} {{fecha_fin}} {{Category}}
 
 {{#if uno}}
-folio: {{denuncias.folio}} Titulo: {{denuncias.titulo}} ubicacion: {{denuncias.ubicacion.address}}
+<div>Folio: {{denuncias.folio}}</div>
+<div>Titulo: {{denuncias.titulo}}</div>
+<div>Status: {{denuncias.estatus}}</div>
+<div>Descripción: {{denuncias.descripcion}}</div>
+<div>Ubicación: {{denuncias.ubicacion.address}}</div>
+<div id="search"></div>
+<div id='map' style='width: 400px; height: 300px;'></div>
 {{/if}}
 {{#unless uno}}
 {{#each denuncias}}
-folio: {{folio}} Titulo: {{titulo}} ubicacion: {{ubicacion.address}}
+<div>Folio: {{folio}}</div>
+<div>Título: {{titulo}}</div>
+<div>Status: {{estatus}}</div>
+<div>Ubicación: {{ubicacion.coordenadas}}</div>
 {{/each}}
 {{/unless}}
+
+<script>
+
+  const point = [{{denuncias.ubicacion.coordenadas}}]
+
+  mapboxgl.accessToken =
+    "pk.eyJ1IjoidG9tYXNmcmFuY2lzY29hciIsImEiOiJjanUwbHYzdGEzZ2piNDBwY2hsMWFrcG1nIn0.I9dBd93c-Yph7coxBiWO6A";
+
+  let geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+  });
+
+  let map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/navigation-preview-day-v2",
+    center: point,
+    zoom: 14
+  });
+
+  const marker = new mapboxgl.Marker()
+    .setLngLat(point)
+    .addTo(map)
+
+  map.addControl(new mapboxgl.NavigationControl());
+
+</script>

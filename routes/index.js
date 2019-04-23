@@ -60,8 +60,7 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
         user,
         images,
         folio
-      }
-
+      };
 
       Denuncia.create(denuncia)
         .then(() => {
@@ -76,7 +75,7 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
     })
     .catch(err => {
       req.body.folio = 1;
-      Denuncia.create(req.body)
+      Denuncia.create(denuncia)
         .then(() => {
           res.redirect("/");
         })

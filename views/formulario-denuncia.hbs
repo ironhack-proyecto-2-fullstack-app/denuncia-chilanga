@@ -14,13 +14,13 @@
       rows="10"></textarea>
   </div>
 
-  <div class="formulario-denuncia-inner-cont">
+  <div class="formulario-denuncia-inner-cont" style="display: none">
     <label for="">
       Longitude:
       <input id="lng" type="text" name="lng" value="{{ubicacion.coordenadas.[0]}}" />
     </label>
   </div>
-  <div class="formulario-denuncia-inner-cont">
+  <div class="formulario-denuncia-inner-cont" style="display: none">
     <label for="">
       Latitude:
       <input id="lat" type="text" name="lat" value="{{ubicacion.coordenadas.[1]}}" />
@@ -71,6 +71,8 @@
     center: cdmx,
     zoom: 12
   });
+
+  map.addControl(new mapboxgl.NavigationControl());
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
