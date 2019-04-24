@@ -59,7 +59,8 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
     } else {
       return req.user.id;
     }
-  };
+  }
+  ;
   
   req.body.user = usr();
   req.body.images = req.files.map(file => file.url);
@@ -74,11 +75,12 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
       let denuncia = {
         titulo,
         descripcion,
+        
+        categoria,
         ubicacion: {
           type: "Point",
-          coordenadas: [lng, lat]
+          coordinates: [lng, lat]
         },
-        categoria,
         direccion,
         user,
         fecha,
@@ -97,8 +99,25 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
           console.log(`Hubo un error subiendo tu denuncia: ${err}`);
         });
     })
+    
     .catch(err => {
       req.body.folio = 1;
+      req.body.fecha = ponefecha();
+      let {titulo, descripcion, lng, lat, categoria, user, images, folio, fecha, direccion} = req.body;
+      let denuncia = {
+        titulo,
+        descripcion,
+        ubicacion: {
+          type: "Point",
+          coordinates: [lng, lat]
+        },
+        categoria,
+        direccion,
+        user,
+        fecha,
+        images,
+        folio
+      };
       Denuncia.create(denuncia)
         .then(() => {
           res.redirect("/");
