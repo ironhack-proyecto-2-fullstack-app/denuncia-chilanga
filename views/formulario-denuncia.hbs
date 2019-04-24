@@ -25,10 +25,11 @@
       Latitude:
       <input id="lat" type="text" name="lat" value="{{ubicacion.coordenadas.[1]}}" />
     </label>
+
   </div>
   <div class="formulario-inner-cont">
   <label for="">Ubicación</label>
-  <div id="search"></div>
+  <div id="search" type="text" name="direccion"></div>
   </div>
 
   <div id='map' style='width: 400px; height: 300px;'></div>
@@ -47,6 +48,7 @@
       {{/each}}
     </select>
   </div>
+
   <button type="submit">Denuncia!</button>
 </form>
 </section>
@@ -103,3 +105,4 @@
   document.getElementById("search").appendChild(geocoder.onAdd(map));
 
 </script>
+

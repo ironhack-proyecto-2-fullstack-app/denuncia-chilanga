@@ -1,8 +1,6 @@
-Esta es la vista de las denuncias: <br>
-Parámetros: {{Folio}} {{fecha_ini}} {{fecha_fin}} {{Category}}
 
 {{#if uno}}
-<div>Folio: {{denuncias.folio}}</div>
+<div><a href ="/denuncia/{{denuncias.folio}}">Folio: {{denuncias.folio}}</a></div>
 <div>Titulo: {{denuncias.titulo}}</div>
 <div>Status: {{denuncias.estatus}}</div>
 <div>Descripción: {{denuncias.descripcion}}</div>
@@ -12,10 +10,11 @@ Parámetros: {{Folio}} {{fecha_ini}} {{fecha_fin}} {{Category}}
 {{/if}}
 {{#unless uno}}
 {{#each denuncias}}
-<div>Folio: {{folio}}</div>
+<div><a href = "/denuncia/{{folio}}">Folio: {{folio}}</a></div>
 <div>Título: {{titulo}}</div>
 <div>Status: {{estatus}}</div>
 <div>Ubicación: {{ubicacion.coordenadas}}</div>
+
 {{/each}}
 {{/unless}}
 
