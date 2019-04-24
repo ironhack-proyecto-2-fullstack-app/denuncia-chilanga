@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const passport = require("passport");
+const Recaptcha = require("express-recaptcha").RecaptchaV2;
+const recaptcha = new Recaptcha("6Ldq3Z8UAAAAANaNEacz-2ldyhQA5Dkmfme8HXck", "6Ldq3Z8UAAAAAArR_Rk6XupB5Fb6m73ZN7HFRUWD");
 
 //middlewares para saber si está logueado:
 

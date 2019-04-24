@@ -15,7 +15,7 @@ const denunciaSchema = new Schema(
     },
     titulo: {
       type: String,
-      requires: true
+      required: true
     },
     descripcion: String,
     ubicacion: {
@@ -30,7 +30,7 @@ const denunciaSchema = new Schema(
       // colonia: {
       //   type: String
       // },
-      coordenadas: {
+      coordinates: {
         type: [Number]
       }
     },

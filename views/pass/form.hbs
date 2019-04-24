@@ -1,27 +1,28 @@
+<section class="formulario-cont">
 <form {{#if login}} action="/login" 
 {{else}} action="/signup" {{/if}} 
-method="POST">
+method="POST" class="form">
  {{#unless login}}
-  <div>
+  <div class="formulario-inner-cont">
     <label for="">
       Nombre(s):
       <input  name="nombre" type= "text" placeholder="Tu(s) nombre(s)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
     </label>
   </div>
-  <div>
+  <div class="formulario-inner-cont">
     <label for="">
       Apellido(s):
       <input  name="apellido" type= "text" placeholder="Tu(s) apellido(s)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
     </label>
   </div>
   {{/unless}}
-  <div>
+  <div class="formulario-inner-cont">
     <label for="">
       E-mail:
       <input  name="email" type="email" placeholder="ej@ejemplo.com">
     </label>
   </div>
-  <div>
+  <div class="formulario-inner-cont">
     <label for="">
       Contraseña:
       <input type="password" name="password">
@@ -29,13 +30,15 @@ method="POST">
   </div>
 
   {{#unless login}}
-  <div>
+  <div class="formulario-inner-cont">
     <label for="">
       Confirma tu contraseña:
       <input type="password" name="passwordConfirm">
     </label>
   </div>
   {{/unless}}
+
+  <div class="g-recaptcha" data-sitekey="6Ldq3Z8UAAAAANaNEacz-2ldyhQA5Dkmfme8HXck"></div>
 
   <button type="submit">
     {{#if login}}
@@ -56,3 +59,4 @@ method="POST">
   {{/if}}
 
 </form>
+</section>

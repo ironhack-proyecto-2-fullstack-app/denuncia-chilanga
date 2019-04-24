@@ -8,6 +8,7 @@ const Denuncia = require('../models/Denuncia');
 
 
 // Estas funciones me dejarán extraer parámetros de la URL, porque no sé porqué no funciona req.params
+
 const desglosaParametros = 
 function(url,nro,dato){
 if (url.split('&').length-1 < nro-1){return undefined}

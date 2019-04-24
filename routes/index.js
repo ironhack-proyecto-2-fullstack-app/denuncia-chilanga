@@ -54,7 +54,7 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
         descripcion,
         ubicacion: {
           type: "Point",
-          coordenadas: [lng, lat]
+          coordinates: [lng, lat]
         },
         categoria,
         user,
@@ -80,7 +80,7 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
           res.redirect("/");
         })
         .catch(err => {
-          console.log(`Hubo un error subiendo tu denuncia: ${err}`);
+          console.log(`Hubo un error subiendo tu denuncia2: ${err}`);
         });
     });
 });
