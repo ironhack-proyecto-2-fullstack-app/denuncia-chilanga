@@ -5,6 +5,7 @@ const passport = require("passport");
 const Denuncia = require("../models/Denuncia");
 const uploadCloud = require("../helpers/cloudinary");
 const Categoria = require("../models/Categoria");
+const ObjectId = require('mongoose').Types.ObjectId;
 
 //middlewares para saber si está logueado:
 
@@ -16,6 +17,14 @@ function aseguraDeslogueo(req, res, next) {
   }
 
 };
+
+function aseguraLogueo(req, res, next){
+  if (req.isAuthenticated()){
+    return next()
+  } else {
+    res.redirect('/login')
+  }
+}
 // termina middleware
 
 //Funcion para poner Fecha:
@@ -123,10 +132,25 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
           res.redirect("/");
         })
         .catch(err => {
-          console.log(`Hubo un error subiendo tu denuncia2: ${err}`);
+          console.log(`Hubo un error subiendo tu denuncia: ${err}`);
         });
     });
 
 });
+
+router.get('/mis-denuncias', (req, res) => {
+  res.redirect('/login')
+});
+
+router.get('/mis-denuncias/:id', aseguraLogueo, (req, res) => {
+  let {id} = req.user._id;
+  Denuncia.find({ user: new ObjectId(id) })
+    .then( denuncias => {
+      res.render('mis-denuncias', {denuncias})
+    })
+    .catch(err => {
+      console.log(`Hubo un error encontrando tus denuncias: ${err}`)
+    })
+})
 
 module.exports = router;
