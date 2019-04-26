@@ -1,23 +1,42 @@
-<div id="landing-cont">
-<h1>{{title}}</h1>
+
+<div class="uk-flex uk-flex-wrap uk-flex-wrap-around uk-flex-center uk-height-medium">
+
+  <div name="contenedor_izq" class="contenedor uk-column uk-column-divider" >
+      <h1>{{title}}</h1>
 
 {{#unless home}}
-<button><a href="/signup">Regístrate</a></button>
-<button><a href="/login">Inicia Sesion</a></button>
+      <button><a href="/signup">Regístrate</a></button>
+      <button><a href="/login">Inicia Sesion</a></button>
 {{/unless}}
 
 
 {{#if home}}
-<p> tú eres {{nombre}} {{apellido}} y tienes eres un {{rol}}</p>
-<button><a href="/logout">Salir</a></button>
-
+      <p> tú eres {{nombre}} {{apellido}} y tienes eres un {{rol}}</p>
 {{/if}}
-
+      <p><button><a href="/generar-denuncia">Levanta una denuncia</a></button> </p>
+{{#if home}}
+      <p><button><a href ="/user/{{id}}"> Editar mi información</a></button></p>
+{{/if}}      
 {{#if admin}}
-<button><a href="/users">Usuarios</a></div>
-<button><a href="/categoria">Categorias</a></button>
-
+<div class="uk-card-default">
+    <h3 class="uk-card-tittle"> Mis Catálogos:</h3>
+      <button class="uk-button uk-button-primary"><a href="/users">Usuarios</a></button>
+      <button class="uk-button uk-button-primary"><a href="/categoria">Categorias</a></button>
+</div>
+{{/if}}
+{{#if home}}
+<p><button><a href="/logout">Salir</a></button></p>
 {{/if}}
 
-<button><a href="/generar-denuncia">Levanta una denuncia</a></button>
+  </div>
+{{#if home}}
+  <div name="contenedor_der" id="landing-cont" class="uk-column-1-2">
+    <div class= "uk-card uk-card-secondary uk-card-body" id="landing-cont"  name="tarjeta_denuncias">
+          Tienes:
+          <p class="uk-card-title"> {{denuncias}} </p>
+          <p> denuncias a la fecha </p>
+    </div>
+  </div>
+  {{/if}}
+
 </div>
