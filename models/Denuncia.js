@@ -40,7 +40,7 @@ const denunciaSchema = new Schema(
     estatus: {
       type: String,
       required: true,
-      enum: ["Abierta", "Cerrada", "En Proceso"],
+      enum: ["Abierta", "Rechazada", "Completada", "En Proceso"],
       default: "Abierta"
     },
     categoria: { type: Schema.Types.ObjectId, required: true, ref: "Categoria" }

@@ -15,10 +15,12 @@
   function colorStatus() {
     var status = document.getElementsByClassName('mis-denuncias-status');
     for (let i in status) {
-      if (status[i].innerHTML == "Abierta") {
+      if (status[i].innerHTML == "Rechazada") {
         status[i].setAttribute('style', 'color: red');
-      } else if (status[i].innerHTML == "Cerrada"){
+      } else if (status[i].innerHTML == "Completada"){
         status[i].setAttribute('style', 'color: green')
+      } else if (status[i].innerHTML == "En Proceso"){
+        status[i].setAttribute('style', 'color: yellow')
       };
     }
   };
