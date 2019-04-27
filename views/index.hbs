@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <div class="uk-flex uk-flex-wrap uk-flex-wrap-around uk-flex-center uk-height-medium">
 
@@ -8,8 +9,22 @@
       <button><a href="/signup">Regístrate</a></button>
       <button><a href="/login">Inicia Sesion</a></button>
 {{/unless}}
+=======
+<div class="outer-cont">
+  <div class="inner-cont">
+    <h1>{{title}}</h1>
 
+    {{#if user.home}}
+    <h4>Bienvenido, {{user.nombre}} {{user.apellido}}</h4>
+    {{/if}}
+>>>>>>> master
 
+    {{#unless user.home}}
+    <button><a href="/signup">Regístrate</a></button>
+    <button><a href="/login">Inicia Sesion</a></button>
+    {{/unless}}
+
+<<<<<<< HEAD
 {{#if home}}
       <p> tú eres {{nombre}} {{apellido}} y tienes eres un {{rol}}</p>
 {{/if}}
@@ -39,4 +54,49 @@
   </div>
   {{/if}}
 
+=======
+    {{#if user.admin}}
+    <button><a href="/users">Usuarios</a>
+      <button><a href="/categoria">Categorias</a></button>
+
+      {{/if}}
+
+      <button><a href="/generar-denuncia">Levanta una denuncia</a></button>
+
+      <button><a href="/mis-denuncias/{{user.id}}">Mis denuncias</a></button>
+
+      {{#if user.home}}
+      <button><a href="/logout">Salir</a></button>
+    dias en los que participaste:  {{fechas.[0]}} ,;
+      {{/if}}
+    
+      {{#if user.home}}
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <canvas id="myChart" width="400" height="400"></canvas>
+      <script src="/javascripts/grapusrsem.js"></script>
+       <script>  
+         var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ["{{fechas.[0]}}","{{fechas.[1]}}","{{fechas.[2]}}","{{fechas.[3]}}","{{fechas.[4]}}","{{fechas.[5]}}","{{fechas.[6]}}"],
+        datasets: [{
+            label: 'Tu semana:',
+            backgroundColor: '{{color_graph}}',
+            borderColor: '{{color_graph}}',
+            data: ["{{vals.[0]}}","{{vals.[1]}}","{{vals.[2]}}","{{vals.[3]}}","{{vals.[4]}}","{{vals.[5]}}","{{vals.[6]}}"]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+</script>
+
+      {{/if}}
+  </div>
+>>>>>>> master
 </div>

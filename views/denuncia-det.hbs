@@ -1,46 +1,49 @@
+<div class="outer-cont">
+  <div class="inner-cont">
+    <form>
+      <div>
+        <label for="Folio">Folio:</label>
+        <input type="text" value="{{folio}}" disabled>
+        <label for="Estatus">Situación:</label>
+        <input type="text" value="{{estatus}}" disabled>
+      </div>
+      <div>
+        <label for="Fecha">Fecha:</label>
+        <input type="text" value="{{fecha}}" disabled>
+        <label for="Categoria">Categoria:</label>
+        <input type="text" value="{{categoria.descripcion}}" disabled>
+      </div>
+      {{#if user}}
+      <div>
+        <label for="User">Denunciante:</label>
+        <input type="text" value="{{user.nombre}} {{user.apellido}}" disabled>
+      </div>
+      {{/if}}
+      {{#unless user}}
+      <div>
+        <label for="User">Denunciante:</label>
+        <input type="text" value="Anónimo" disabled>
+      </div>
+      {{/unless}}
 
-<form>
-  <div>
-  <label for="Folio">Folio:</label>
-  <input type="text" value ="{{folio}}"  disabled>
-  <label for="Estatus">Situación:</label>
-  <input type="text" value ="{{estatus}}"  disabled>
-  </div>
-  <div>
-  <label for="Fecha">Fecha:</label>
-  <input type="text" value ="{{fecha}}"  disabled>
-   <label for="Categoria">Categoria:</label>
-  <input type="text" value ="{{categoria.descripcion}}"  disabled>
-  </div>
-{{#if user}}
-  <div>
-  <label for="User">Denunciante:</label>
-  <input type="text" value ="{{user.nombre}} {{user.apellido}}"  disabled>
-  </div>
-{{/if}}
-{{#unless user}}
-  <div>
-  <label for="User">Denunciante:</label>
-  <input type="text" value ="Anónimo"  disabled>
-  </div>
-{{/unless}}
+
+      <h1> {{titulo}} </h1>
+      <div>
+        <label for="descripcion">Descripción:</label></div>
+      <div><textarea name="descripcion" cols="60" rows="5" disabled>{{descripcion}}</textarea>
+      </div>
+      <div>
+        <label for="Direccion">Dirección:</label>
+        <input type="text" value="{{ubicacion.address}}" disabled>
+      </div>
 
 
-<h1> {{titulo}} </h1>
-<div>
-  <label for="descripcion">Descripción:</label></div>
-  <div><textarea  name="descripcion"  cols="60" rows="5" disabled>{{descripcion}}</textarea>
+      <div>
+        <img src={{images.[0]}}></img>
+      </div>
+
+    </form>
+
+    <a href="/"> Inicio </a>
+  </div>
 </div>
-<div>
-  <label for="Direccion">Dirección:</label>
-  <input type="text" value ="{{ubicacion.address}}"  disabled>
-</div>
-
-
-  <div>
-  <img src ={{images.[0]}}></img>
-  </div>
-
-</form>
-
-<a href="/"> Inicio </a>

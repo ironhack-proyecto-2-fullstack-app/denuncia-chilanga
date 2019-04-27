@@ -4,15 +4,18 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new Schema(
   {
-  email:{type:String, required:true, unique:true},
-  nombre:{type: String, required:true},
-  apellido:{type:String, required:true},
-  password: String,
-  rol:{type: String, required:true, 
-    enum:["CIUDADANO", "SUPERVISOR","ADMIN"]
-    ,default:"CIUDADANO"}
+    email: { type: String, required: true, unique: true },
+    nombre: { type: String, required: true },
+    apellido: { type: String, required: true },
+    password: String,
+    rol: {
+      type: String,
+      required: true,
+      enum: ["CIUDADANO", "SUPERVISOR", "ADMIN"],
+      default: "CIUDADANO"
+    }
   },
-  { timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"} }
+  { timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" } }
 );
 
 userSchema.plugin(passportLocalMongoose, {

@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chart.js": "^2.8.0",
     "cloudinary": "^1.14.0",
     "cookie-parser": "^1.4.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "express-recaptcha": "^5.0.0",
     "express-session": "^1.16.1",
     "hbs": "^4.0.1",
     "mongoose": "^5.2.10",

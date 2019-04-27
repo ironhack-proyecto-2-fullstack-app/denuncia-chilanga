@@ -1,7 +1,8 @@
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-    console.log("IronGenerator JS imported successfully!");
-  },
+  console.log("bienvenido a Denncia Chilanga")
+  }
+  ,
   false
 );

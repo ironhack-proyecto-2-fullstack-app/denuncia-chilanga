@@ -36,6 +36,8 @@ app.use(cookieParser());
 app.use(
   session({
     secret: process.env.SECRET,
+    cookie: {maxAge: 900000},
+    rolling: true,
     saveUninitialized: true,
     resave: true
   })

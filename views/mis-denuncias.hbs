@@ -1,0 +1,28 @@
+<div class="outer-cont">
+  <h2>Mis denuncias!</h2>
+  {{#each denuncias as |denuncia|}}
+  <div class="inner-cont">
+    <h4>{{denuncia.titulo}}</h4>
+    <p>Status: <strong class="mis-denuncias-status">{{denuncia.estatus}}</strong></p>
+    <p>Descripción: {{denuncia.descripcion}}</p>
+    <p>Ubicación: {{denuncia.ubicacion.coordinates}}</p>
+  </div>
+  {{/each}}
+</div>
+
+<script>
+
+  function colorStatus() {
+    var status = document.getElementsByClassName('mis-denuncias-status');
+    for (let i in status) {
+      if (status[i].innerHTML == "Abierta") {
+        status[i].setAttribute('style', 'color: red');
+      } else if (status[i].innerHTML == "Cerrada"){
+        status[i].setAttribute('style', 'color: green')
+      };
+    }
+  };
+
+  colorStatus();
+
+</script>
