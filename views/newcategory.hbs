@@ -1,25 +1,25 @@
-<form 
-action =""  
-method="POST">
-  <div>
-    <label for="">
-      Orden:
-      <input  name="orden" value="{{orden}}" type="number">
-    </label>
+<div class="outer-cont">
+  <div class="inner-cont">
+    <div class="unique-form">
+      <form action="" method="POST" class="form-group">
+        <div>
+          <label for="">
+            Orden:
+            <input name="orden" value="{{orden}}" type="number">
+          </label>
+        </div>
+        <div>
+          <label for="">
+            Descripción:
+            <input name="descripcion" value="{{descripcion}}" style="text-transform:uppercase;"
+              onkeyup="javascript:this.value=this.value.toUpperCase();">
+          </label>
+        </div>
+        <div>
+          <button type="submit">Guardar</button> <br><br>
+          <a href="/categoria">Ver lista de categorias</a>
+        </div>
+      </form>
+    </div>
   </div>
-  <div>
-    <label for="">
-      Descripciòn:
-      <input name="descripcion" value="{{descripcion}}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-    </label>
-  </div>
-  
-
-  <button type="submit">
-    Guardar
-  </button>
-
-  <a href="/categoria">Ver lista de categorias</a>
-
-
-</form>
+</div>

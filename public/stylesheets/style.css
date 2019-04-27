@@ -114,7 +114,8 @@ button > a {
 .formulario-inner-cont input,
 .formulario-inner-cont select,
 .formulario-inner-cont textarea {
-  width: 250px; }
+  width: 250px;
+  line-height: 20px; }
 
 .formulario-inner-cont textarea {
   border: 1px solid lightgray; }
@@ -122,5 +123,8 @@ button > a {
 .mapboxgl-ctrl-geocoder {
   width: 250px;
   margin-bottom: 10px; }
+
+.unique-form {
+  margin-top: 20px; }
 
 /*# sourceMappingURL=style.css.map */

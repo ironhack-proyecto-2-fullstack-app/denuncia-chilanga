@@ -27,7 +27,7 @@
     </label>
 
   </div>
-  <div class="formulario-inner-cont">
+  <div class="formulario-inner-cont" style="display: none">
     <label for="">
       Direccion:
       <input id="direccion" type="text" name="direccion" value="{{ubicacion.direccion}}" />
@@ -69,7 +69,8 @@
 
   let geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
-    countries: 'mx'
+    countries: 'mx',
+    bbox: [-99.347354, 19.205034, -98.944098, 19.582059]
   })
 
   var input_lng = document.getElementById("lng");

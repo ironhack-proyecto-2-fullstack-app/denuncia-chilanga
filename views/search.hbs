@@ -1,33 +1,43 @@
-<script> 
-function funcion(string){
-  if (string == "folio"){ document.form.folio.disabled = false; 
-                          document.form.fecha.disabled = true; 
-                          document.form.fecha.value =null; } 
-  if (string == "fecha"){ document.form.folio.disabled = true; 
-                          document.form.fecha.disabled = false; 
-                          document.form.folio.value = null }; 
-}; 
-</script> 
-<form name="form"> 
-Buscar por Folio:
-<input type="radio" name="busqueda" onclick="funcion('folio')" /> 
-<input type="number" name="folio" disabled /> 
-<div>Buscar por Fecha:
-<input type="radio" name="busqueda" onclick="funcion('fecha')" /> 
-<input type="date" name="fecha" disabled /> 
-</div>
- <div>
-  <label for="categoria">Categoría</label>
-  <select name="categoria" id="">
-    <option value ='*' >Todas las categorías</option>
-    {{#each categorias as |c|}}
-    <option value="{{_id}}">{{descripcion}}</option>
-    {{/each}}
-  </select>
-  </div>
-  <div>
-  <button type="submit" ><a>Buscar</a> </button>  
-  </div>
-</form>
+<script>
+  function funcion(string) {
+    if (string == "folio") {
+      document.form.folio.disabled = false;
+      document.form.fecha.disabled = true;
+      document.form.fecha.value = null;
+    }
+    if (string == "fecha") {
+      document.form.folio.disabled = true;
+      document.form.fecha.disabled = false;
+      document.form.folio.value = null
+    };
+  }; 
+</script>
 
-<div> <a href="/">Inicio</a> </div>
+
+<div class="outer-cont">
+  <div class="inner-cont">
+    <div class="unique-form">
+      <form name="form" class="form-group">
+        Buscar por Folio:
+        <input type="radio" name="busqueda" onclick="funcion('folio')" />
+        <input type="number" name="folio" disabled />
+        <div>Buscar por Fecha:
+          <input type="radio" name="busqueda" onclick="funcion('fecha')" />
+          <input type="date" name="fecha" disabled />
+        </div>
+        <div>
+          <label for="categoria">Categoría</label>
+          <select name="categoria" id="">
+            <option value='*'>Todas las categorías</option>
+            {{#each categorias as |c|}}
+            <option value="{{_id}}">{{descripcion}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div>
+          <button type="submit"><a>Buscar</a> </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

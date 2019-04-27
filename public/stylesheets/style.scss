@@ -146,6 +146,7 @@ button > a {
 .formulario-inner-cont select,
 .formulario-inner-cont textarea {
   width: 250px;
+  line-height: 20px;
 }
 
 .formulario-inner-cont textarea {
@@ -155,4 +156,10 @@ button > a {
 .mapboxgl-ctrl-geocoder {
   width: 250px;
   margin-bottom: 10px;
+}
+
+// search.hbs
+
+.unique-form {
+  margin-top: 20px;
 }
