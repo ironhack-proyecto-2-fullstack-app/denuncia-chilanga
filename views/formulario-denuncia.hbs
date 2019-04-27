@@ -28,6 +28,13 @@
 
   </div>
   <div class="formulario-inner-cont">
+    <label for="">
+      Direccion:
+      <input id="direccion" type="text" name="direccion" value="{{ubicacion.direccion}}" />
+    </label>
+
+  </div>
+  <div class="formulario-inner-cont">
   <label for="">Ubicación</label>
   <div id="search" type="text" name="direccion"></div>
   </div>
@@ -61,11 +68,13 @@
     "pk.eyJ1IjoidG9tYXNmcmFuY2lzY29hciIsImEiOiJjanUwbHYzdGEzZ2piNDBwY2hsMWFrcG1nIn0.I9dBd93c-Yph7coxBiWO6A";
 
   let geocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken
+    accessToken: mapboxgl.accessToken,
+    countries: 'mx'
   })
 
   var input_lng = document.getElementById("lng");
   var input_lat = document.getElementById("lat");
+  var input_dir = document.getElementById("direccion")
 
   var map = new mapboxgl.Map({
     container: "map",
@@ -96,10 +105,12 @@
   }
 
   geocoder.on("result", res => {
-    console.log(res.result);
+    console.log('Esta es la dirección: ', res.result.place_name);
     let [lng, lat] = res.result.center;
+    let dir = res.result.place_name;
     input_lng.value = lng;
     input_lat.value = lat;
+    input_dir.value = dir;
   });
 
   document.getElementById("search").appendChild(geocoder.onAdd(map));

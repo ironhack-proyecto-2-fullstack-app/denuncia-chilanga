@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Ubuntu Mono', monospace;
   background: url("../images/angel.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -25,19 +25,19 @@ button {
   background-color: #00b7ff;
   color: white;
   margin: 5px 0;
+  width: 120px;
 }
 
 button > a {
   color: white;
 }
 
-// index.hbs
-
 .outer-cont {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 100px;
 }
 
 .inner-cont {
@@ -50,12 +50,78 @@ button > a {
   text-align: center;
 }
 
+// navbar
+
+.welcome-user {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.welcome-user a {
+  text-decoration: underline;
+}
+
+// index.hbs
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 75%;
+}
+
+.signup-login-int {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+.signup-login-int p {
+  margin: 0 10px 0 0;
+}
+
+#home-title {
+  font-size: 80px;
+  font-family: 'Neucha', cursive;
+  text-align: center;
+  margin: 80px 0 40px 0;
+}
+
+#home-title span {
+  padding-left: 70px;
+}
+
+#denuncia-btn {
+  width: 50%;
+  text-align: center;
+  font-size: 30px;
+}
+
+#usuarios-categorias-cont {
+  margin-top: 5px;
+  display: inline-block;
+}
+
+#usuarios-categorias-cont button {
+  margin: 0 10px;
+}
+
+
 // formulario-denuncia.hbs
 
 .formulario-cont {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
 }
 
 .form {

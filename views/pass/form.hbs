@@ -1,19 +1,22 @@
+<div class="main">
+  <h1 id="home-title">DENUNCIA<br><span>CHILANGA</span></h1>
+</div>
 <section class="outer-cont">
   <div class="inner-cont">
 <form {{#if login}} action="/login" 
 {{else}} action="/signup" {{/if}} 
-method="POST" class="form">
+method="POST" class="form-group">
  {{#unless login}}
   <div class="formulario-inner-cont">
     <label for="">
       Nombre(s):
-      <input  name="nombre" type= "text" placeholder="Tu(s) nombre(s)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+      <input  name="nombre" type= "text" placeholder="Tu(s) nombre(s)" onkeyup="javascript:this.value=this.value.toUpperCase();">
     </label>
   </div>
   <div class="formulario-inner-cont">
     <label for="">
       Apellido(s):
-      <input  name="apellido" type= "text" placeholder="Tu(s) apellido(s)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+      <input  name="apellido" type= "text" placeholder="Tu(s) apellido(s)" onkeyup="javascript:this.value=this.value.toUpperCase();">
     </label>
   </div>
   {{/unless}}
@@ -26,7 +29,7 @@ method="POST" class="form">
   <div class="formulario-inner-cont">
     <label for="">
       Contraseña:
-      <input type="password" name="password">
+      <input type="password" name="password" placeholder="*******">
     </label>
   </div>
 
@@ -34,7 +37,7 @@ method="POST" class="form">
   <div class="formulario-inner-cont">
     <label for="">
       Confirma tu contraseña:
-      <input type="password" name="passwordConfirm">
+      <input type="password" name="passwordConfirm" placeholder="*******">
     </label>
   </div>
   {{/unless}}

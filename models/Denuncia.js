@@ -24,9 +24,9 @@ const denunciaSchema = new Schema(
         type: String,
         default: "Point"
       },
-      // address: {
-      //   type: String
-      // },
+      address: {
+        type: String
+      },
       // colonia: {
       //   type: String
       // },
