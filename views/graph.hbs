@@ -1,0 +1,71 @@
+<script> 
+
+function validar() {
+        var inicio = document.getElementById('fecha_ini').value; 
+        var finalq  = document.getElementById('fecha_fin').value;
+        inicio= new Date(inicio);
+        finalq= new Date(finalq);
+        if(inicio>finalq)
+        alert('La fecha de inicio puede ser mayor que la fecha fin');
+        }
+</script> 
+
+
+<form name="form"> 
+
+<div>Define rango de Fechas:
+  {{#if graph}}
+<input type="date" name="fecha_ini" id="fecha_ini" value ="{{Fi}}" required /> 
+<input type="date" name="fecha_fin" id="fecha_fin" value ="{{Ff}}" required />   
+  {{/if}}
+  {{#unless graph}}
+<input type="date" name="fecha_ini" id="fecha_ini" value ="2019-05-01" required /> 
+<input type="date" name="fecha_fin" id="fecha_fin" value ="2019-05-31" required /> 
+  {{/unless }}
+</div>
+
+ <div>
+  <label for="graph">Define un tipo de Gráfico:</label>
+  <select name="graph" id="">
+  {{#if graph}}<option value="{{type}}">{{deftipo}}</option>{{/if}}
+  <option value="bar">Barras</option>
+  <option value="radar">Radial</option>
+  <option value="line">Dispersión</option>
+  <option value="doughnut">Dona</option>
+  <option value="pie">Pastel</option>
+  </select>
+  </div>
+  <div>
+  <button type="submit" ><a>Mostrar</a> </button>  
+  </div>
+</form>
+      {{#if graph}}
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <canvas id="myChart" width="400" height="400"></canvas>
+      <script src="/javascripts/grapusrsem.js"></script>
+       <script>  
+         var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: '{{type}}',
+
+    // The data for our dataset
+    data: {
+        labels: [{{#each info as |F|}}"{{F._id}}",{{/each}}],
+        datasets: [{
+            label: 'Total de Denuncias:',
+            backgroundColor: [{{#each color as |c|}}"{{c}}", {{/each}}],
+            fill: false,
+            borderColor: 'rgb(0, 0, 0)',
+            data: [{{#each info as |F|}}"{{F.total}}",{{/each}}]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+</script>
+
+      {{/if}}
+
+<div> <a href="/">Inicio</a> </div>

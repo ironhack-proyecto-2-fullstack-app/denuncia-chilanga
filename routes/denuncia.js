@@ -39,7 +39,7 @@ router.get("/",async(req,res)=>{
   const Folio = devuelveParametro(url,'folio')
   const Fecha = devuelveParametro(url,'fecha')
   const Category = devuelveParametro(url,'categoria')
-  var pagina = 1;
+  
 
   if (url == '/'){
   Categoria.find().sort({orden:1})
