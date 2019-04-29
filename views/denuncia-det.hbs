@@ -36,13 +36,31 @@
         <label for="Direccion">Dirección:</label>
         <input type="text" value="{{ubicacion.address}}" disabled>
       </div>
+  
+      </form>
+    {{#if comentarios}}Comentarios:{{/if}}
+      {{#each comentarios as |C|}}
+      <div>
+        {{C.user.nombre}} {{C.user.apellido}} ({{C.createdAt}}): 
+        <div>{{C.comentario}}</div>
+      </div>
+      {{/each}}
+
+      {{#if logged}}
+    <div>
+      <form method="POST" >
+      <textarea name="comentario" cols="60" rows="5" placeholder="Escribe tu comentario aquí"></textarea>
+      <button "submit"> comentar </button>
+      </form>
+    </div>
+      {{/if}}
 
 
       <div>
         <img src={{images.[0]}}></img>
       </div>
 
-    </form>
+   
 
     <a href="/"> Inicio </a>
   </div>

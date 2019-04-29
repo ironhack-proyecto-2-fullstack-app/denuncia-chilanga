@@ -4,7 +4,7 @@ const User = require("../models/User");
 const passport = require("passport");
 const Categoria = require('../models/Categoria');
 const Denuncia = require('../models/Denuncia');
-
+const Comentario = require('../models/Comentario');
 
 
 // Estas funciones me dejarán extraer parámetros de la URL, porque no sé porqué no funciona req.params
@@ -32,7 +32,25 @@ else {
   };
 
 // Terminan funciones para encontrar los parametros en la URL.
+// middlewares:
 
+function aseguraLogueo(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect("/login");
+  }
+}
+
+function aseguraDeslogueo(req, res, next) {
+  if (req.isAuthenticated() == false) {
+    return next();
+  } else {
+    res.redirect("/home");
+  }
+}
+
+// terminan los middlewares
 
 router.get("/",async(req,res)=>{
   const url = req.url;
@@ -88,15 +106,73 @@ router.get("/",async(req,res)=>{
   }
   });
 
-  router.get ('/:Folio',(req,res)=>{
+  router.get ('/:Folio',async(req,res)=>{
     let{Folio} = req.params;
     Denuncia.findOne({folio: Folio}).populate('user').populate('categoria')
       .then(denuncias=>{
-        console.log(denuncias);
-       return res.render('denuncia-det', denuncias)
+        let usr= denuncias.user;
+        let ubicacion = denuncias.ubicacion;
+        let images = denuncias.images;
+        let estatus=denuncias.estatus;
+        let _id = denuncias._id;
+        let titulo = denuncias.titulo;
+        let descripcion = denuncias.descripcion;
+        let categoria = denuncias.categoria;
+        let fecha = denuncias.fecha;
+        let folio = denuncias.folio;
+        let log = function (){
+          if (req.isAuthenticated()){return true}
+          else {return false}
+        };
+        let logged = log()
+        var data ={user:usr, ubicacion: ubicacion, images:images, estatus:estatus,_id: _id, titulo:titulo, 
+          descripcion:descripcion,categoria:categoria,fecha:fecha, folio:folio, logged };
+  
+        Comentario.find({denuncia:_id}).populate('user').sort({createdAt:1})
+        .then ( comentarios=>{
+ 
+          let detectaUsuario = function (){
+            if (req.user == undefined){return false}
+            else {return req.user._id}
+          };
+
+          let logueado = detectaUsuario();
+           let coment = comentarios
+           console.log(coment);
+           data ={user:usr, ubicacion: ubicacion, images:images, estatus:estatus,_id: _id, titulo:titulo, 
+            descripcion:descripcion,categoria:categoria,fecha:fecha, folio:folio, logged, comentarios:coment, logueado};
+            console.log(data);
+             res.render('denuncia-det',data)
+        }
+        )
+        .catch(err =>{
+          console.log('no tiene comentarios')
+        })
+        console.log(data);
+       // res.render('denuncia-det', data)
       
 
   })
 });
+
+router.post('/:Folio',aseguraLogueo,(req,res)=>{
+  let{Folio} = req.params;
+  let user = req.user;
+
+  Denuncia.findOne({folio: Folio}).populate('user').populate('categoria')
+  .then(denuncias=>{
+    let author = denuncias.user._id;
+    let denuncia = denuncias._id
+    let {comentario} = req.body;
+    let datos = {user:author, denuncia:denuncia,comentario:comentario}
+    console.log(datos);
+    Comentario.create(datos)
+    .then(() => {
+      res.redirect("/denuncia/" + Folio);
+      })
+})
+})
+
+
 
 module.exports = router;

@@ -2,7 +2,7 @@
   <h2>Mis denuncias!</h2>
   {{#each denuncias as |denuncia|}}
   <div class="inner-cont">
-    <h4>{{denuncia.titulo}}</h4>
+    <h4><a href ="/denuncia/{{denuncia.folio}}">{{denuncia.titulo}}</a></h4>
     <p>Status: <strong class="mis-denuncias-status">{{denuncia.estatus}}</strong></p>
     <p>Descripción: {{denuncia.descripcion}}</p>
     <p>Ubicación: {{denuncia.ubicacion.coordinates}}</p>
