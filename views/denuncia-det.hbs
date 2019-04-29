@@ -43,6 +43,7 @@
       <div>
         {{C.user.nombre}} {{C.user.apellido}} ({{C.createdAt}}): 
         <div>{{C.comentario}}</div>
+        {{#if C.edit}} <a href ="/comentarios/{{C._id}}/edit"><button >Editar</button></a>{{/if}}
       </div>
       {{/each}}
 

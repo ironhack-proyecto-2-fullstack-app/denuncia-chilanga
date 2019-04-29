@@ -132,21 +132,39 @@ router.get("/",async(req,res)=>{
         .then ( comentarios=>{
  
           let detectaUsuario = function (){
-            if (req.user == undefined){return false}
+            if (req.user == undefined){return 0}
             else {return req.user._id}
           };
 
           let logueado = detectaUsuario();
-           let coment = comentarios
-           console.log(coment);
+          var inter = comentarios;
+
+          var poneEditable= function(array,logueado){
+            let arreglo = array
+            let usuario = logueado
+            
+            let largo = arreglo.length
+            let detecta = function (n){
+              console.log(n, String(arreglo[n].user._id), String(usuario));
+              if (String(arreglo[n].user._id) !== String(usuario)){return arreglo[n].edit = false }
+              else{return arreglo[n].edit = true }
+            }
+            for(i = 0; i< largo; i++){
+            detecta(i)}
+            return arreglo
+            }
+          //let coment = comentarios;
+          let coment = poneEditable(inter,logueado);
+          console.log(coment[0].user, coment[0].edit, coment[0]);
            data ={user:usr, ubicacion: ubicacion, images:images, estatus:estatus,_id: _id, titulo:titulo, 
             descripcion:descripcion,categoria:categoria,fecha:fecha, folio:folio, logged, comentarios:coment, logueado};
-            console.log(data);
+           
              res.render('denuncia-det',data)
         }
         )
         .catch(err =>{
           console.log('no tiene comentarios')
+          res.render('denuncia-det',data)
         })
         console.log(data);
        // res.render('denuncia-det', data)
@@ -161,7 +179,7 @@ router.post('/:Folio',aseguraLogueo,(req,res)=>{
 
   Denuncia.findOne({folio: Folio}).populate('user').populate('categoria')
   .then(denuncias=>{
-    let author = denuncias.user._id;
+    let author = req.user._id;
     let denuncia = denuncias._id
     let {comentario} = req.body;
     let datos = {user:author, denuncia:denuncia,comentario:comentario}
