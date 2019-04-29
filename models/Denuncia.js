@@ -34,8 +34,8 @@ const denunciaSchema = new Schema(
         type: [Number]
       }
     },
-    direccion:String,
-    fecha:String,
+    direccion: String,
+    fecha: String,
     images: { type: [String] },
     estatus: {
       type: String,

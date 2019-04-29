@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  font: 14px 'Ubuntu Mono', monospace;
+  font: 14px "Ubuntu Mono", monospace;
   background: url("../images/angel.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -45,7 +45,7 @@ button > a {
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
-  background-color: rgba(255,255,255,0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   width: 50%;
   text-align: center;
 }
@@ -75,6 +75,7 @@ button > a {
   flex-direction: row;
   justify-content: space-between;
   width: 75%;
+  margin-bottom: 10px;
 }
 
 .signup-login-int {
@@ -90,9 +91,9 @@ button > a {
 
 #home-title {
   font-size: 80px;
-  font-family: 'Neucha', cursive;
+  font-family: "Neucha", cursive;
   text-align: center;
-  margin: 80px 0 40px 0;
+  margin: 50px 0 40px 0;
 }
 
 #home-title span {
@@ -103,6 +104,8 @@ button > a {
   width: 50%;
   text-align: center;
   font-size: 30px;
+  padding: 15px 0;
+  background-color: rgba(69,183,248,0.95);
 }
 
 #usuarios-categorias-cont {
@@ -113,7 +116,6 @@ button > a {
 #usuarios-categorias-cont button {
   margin: 0 10px;
 }
-
 
 // formulario-denuncia.hbs
 
@@ -132,6 +134,7 @@ button > a {
   align-items: center;
   justify-content: space-around;
   padding: 20px 0;
+  margin-bottom: 100px;
 }
 
 .formulario-inner-cont {
@@ -158,8 +161,22 @@ button > a {
   margin-bottom: 10px;
 }
 
+#denuncia-btn {
+  font-size: 20px;
+}
+
 // search.hbs
 
 .unique-form {
+  margin-top: 10px;
+}
+
+.inner-title {
+  font-family: "Neucha", cursive;
   margin-top: 20px;
+  text-align: center;
+}
+
+.search-inner {
+  margin: 10px 0;
 }

@@ -3,9 +3,10 @@
   {{#each denuncias as |denuncia|}}
   <div class="inner-cont">
     <h4>{{denuncia.titulo}}</h4>
+    <p><strong>Folio:</strong> {{denuncia.folio}}</p>
     <p>Status: <strong class="mis-denuncias-status">{{denuncia.estatus}}</strong></p>
     <p>Descripción: {{denuncia.descripcion}}</p>
-    <p>Ubicación: {{denuncia.ubicacion.coordinates}}</p>
+    <p>Ubicación: {{denuncia.direccion}}</p>
   </div>
   {{/each}}
 </div>
@@ -17,7 +18,7 @@
     for (let i in status) {
       if (status[i].innerHTML == "Rechazada") {
         status[i].setAttribute('style', 'color: red');
-      } else if (status[i].innerHTML == "Completada"){
+      } else if (status[i].innerHTML == "Completada" || status[i].innerHTML == "Abierta"){
         status[i].setAttribute('style', 'color: green')
       } else if (status[i].innerHTML == "En Proceso"){
         status[i].setAttribute('style', 'color: yellow')

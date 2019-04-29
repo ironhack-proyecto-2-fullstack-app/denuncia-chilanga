@@ -13,19 +13,22 @@
   }; 
 </script>
 
-
+<h2 class="inner-title">BUSCA TU DENUNCIA</h2>
 <div class="outer-cont">
   <div class="inner-cont">
     <div class="unique-form">
-      <form name="form" class="form-group">
-        Buscar por Folio:
-        <input type="radio" name="busqueda" onclick="funcion('folio')" />
-        <input type="number" name="folio" disabled />
-        <div>Buscar por Fecha:
+      <form name="form">
+        <div class="search-inner">
+          Buscar por Folio:
+          <input type="radio" name="busqueda" onclick="funcion('folio')" />
+          <input type="number" name="folio" disabled />
+        </div>
+        <div class="search-inner">
+          Buscar por Fecha:
           <input type="radio" name="busqueda" onclick="funcion('fecha')" />
           <input type="date" name="fecha" disabled />
         </div>
-        <div>
+        <div class="search-inner">
           <label for="categoria">Categoría</label>
           <select name="categoria" id="">
             <option value='*'>Todas las categorías</option>

@@ -3,7 +3,7 @@
   padding: 0; }
 
 body {
-  font: 14px 'Ubuntu Mono', monospace;
+  font: 14px "Ubuntu Mono", monospace;
   background: url("../images/angel.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -57,7 +57,8 @@ button > a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 75%; }
+  width: 75%;
+  margin-bottom: 10px; }
 
 .signup-login-int {
   display: flex;
@@ -70,9 +71,9 @@ button > a {
 
 #home-title {
   font-size: 80px;
-  font-family: 'Neucha', cursive;
+  font-family: "Neucha", cursive;
   text-align: center;
-  margin: 80px 0 40px 0; }
+  margin: 50px 0 40px 0; }
 
 #home-title span {
   padding-left: 70px; }
@@ -80,7 +81,9 @@ button > a {
 #denuncia-btn {
   width: 50%;
   text-align: center;
-  font-size: 30px; }
+  font-size: 30px;
+  padding: 15px 0;
+  background-color: rgba(69, 183, 248, 0.95); }
 
 #usuarios-categorias-cont {
   margin-top: 5px;
@@ -102,7 +105,8 @@ button > a {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  padding: 20px 0; }
+  padding: 20px 0;
+  margin-bottom: 100px; }
 
 .formulario-inner-cont {
   display: flex;
@@ -124,7 +128,18 @@ button > a {
   width: 250px;
   margin-bottom: 10px; }
 
+#denuncia-btn {
+  font-size: 20px; }
+
 .unique-form {
-  margin-top: 20px; }
+  margin-top: 10px; }
+
+.inner-title {
+  font-family: "Neucha", cursive;
+  margin-top: 20px;
+  text-align: center; }
+
+.search-inner {
+  margin: 10px 0; }
 
 /*# sourceMappingURL=style.css.map */
