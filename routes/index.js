@@ -83,7 +83,8 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
       console.log(req.body)
       let {titulo, descripcion, lng, lat, categoria, user, images, folio, fecha, direccion} = req.body;
       let img = function (array){
-        if (array.length == 0){return ['https://cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c.gif']} 
+        if (array.length == 0)
+        {return ['https://cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c.gif']} 
         else {return array}
       };
 
@@ -104,7 +105,7 @@ router.post("/generar-denuncia", uploadCloud.array("images"), (req, res) => {
     
       Denuncia.create(denuncia)
         .then(() => {
-          console.log('This is the req.body (index.js route): ', req.body);
+          console.log('This is the req.body (index.js routers): ', req.body);
           let folio = req.body.folio;
 
           res.redirect("/denuncia/" + folio);
