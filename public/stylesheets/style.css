@@ -3,7 +3,7 @@
   padding: 0; }
 
 body {
-  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Ubuntu Mono", monospace;
   background: url("../images/angel.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -18,7 +18,8 @@ button {
   border: none;
   background-color: #00b7ff;
   color: white;
-  margin: 5px 0; }
+  margin: 5px 0;
+  width: 120px; }
 
 button > a {
   color: white; }
@@ -27,7 +28,8 @@ button > a {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; }
+  flex-direction: column;
+  margin-bottom: 100px; }
 
 .inner-cont {
   display: flex;
@@ -38,10 +40,63 @@ button > a {
   width: 50%;
   text-align: center; }
 
-.formulario-cont {
+.welcome-user {
+  text-align: center;
+  display: flex;
+  flex-direction: row; }
+
+.welcome-user a {
+  text-decoration: underline; }
+
+.main {
   display: flex;
   flex-direction: column;
   align-items: center; }
+
+.signup-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 75%;
+  margin-bottom: 10px; }
+
+.signup-login-int {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center; }
+
+.signup-login-int p {
+  margin: 0 10px 0 0; }
+
+#home-title {
+  font-size: 80px;
+  font-family: "Neucha", cursive;
+  text-align: center;
+  margin: 50px 0 40px 0; }
+
+#home-title span {
+  padding-left: 70px; }
+
+#denuncia-btn {
+  width: 50%;
+  text-align: center;
+  font-size: 30px;
+  padding: 15px 0;
+  background-color: rgba(69, 183, 248, 0.95); }
+
+#usuarios-categorias-cont {
+  margin-top: 5px;
+  display: inline-block; }
+
+#usuarios-categorias-cont button {
+  margin: 0 10px; }
+
+.formulario-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px; }
 
 .form {
   background-color: rgba(255, 255, 255, 0.7);
@@ -50,7 +105,8 @@ button > a {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  padding: 20px 0; }
+  padding: 20px 0;
+  margin-bottom: 100px; }
 
 .formulario-inner-cont {
   display: flex;
@@ -62,7 +118,8 @@ button > a {
 .formulario-inner-cont input,
 .formulario-inner-cont select,
 .formulario-inner-cont textarea {
-  width: 250px; }
+  width: 250px;
+  line-height: 20px; }
 
 .formulario-inner-cont textarea {
   border: 1px solid lightgray; }
@@ -70,5 +127,19 @@ button > a {
 .mapboxgl-ctrl-geocoder {
   width: 250px;
   margin-bottom: 10px; }
+
+#denuncia-btn {
+  font-size: 20px; }
+
+.unique-form {
+  margin-top: 10px; }
+
+.inner-title {
+  font-family: "Neucha", cursive;
+  margin-top: 20px;
+  text-align: center; }
+
+.search-inner {
+  margin: 10px 0; }
 
 /*# sourceMappingURL=style.css.map */

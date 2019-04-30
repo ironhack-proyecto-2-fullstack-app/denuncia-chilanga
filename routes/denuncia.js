@@ -9,27 +9,30 @@ const Comentario = require('../models/Comentario');
 
 // Estas funciones me dejarán extraer parámetros de la URL, porque no sé porqué no funciona req.params
 
-const desglosaParametros = 
-function(url,nro,dato){
-if (url.split('&').length-1 < nro-1){return undefined}
-else {
-let cadena = url.split('?')[1];
-let parametros = cadena.split("&");
-let valor = parametros[nro-1].split("=");
-return valor [dato]}
+const desglosaParametros = function(url, nro, dato) {
+  if (url.split("&").length - 1 < nro - 1) {
+    return undefined;
+  } else {
+    let cadena = url.split("?")[1];
+    let parametros = cadena.split("&");
+    let valor = parametros[nro - 1].split("=");
+    return valor[dato];
+  }
 };
-const devuelveParametro =
-function (url, parametro){
+const devuelveParametro = function(url, parametro) {
   let resultado;
-if (url == '/') {return resultado =  undefined}
-else {
-  parametros = url.split('&').length;
-  for (i =1; i<= parametros; i++){
-    if(desglosaParametros(url,i,0) == parametro){
-    return resultado = desglosaParametros(url,i,1)};
-  }}
-  return resultado
-  };
+  if (url == "/") {
+    return (resultado = undefined);
+  } else {
+    parametros = url.split("&").length;
+    for (i = 1; i <= parametros; i++) {
+      if (desglosaParametros(url, i, 0) == parametro) {
+        return (resultado = desglosaParametros(url, i, 1));
+      }
+    }
+  }
+  return resultado;
+};
 
 // Terminan funciones para encontrar los parametros en la URL.
 // middlewares:
@@ -41,7 +44,6 @@ function aseguraLogueo(req, res, next) {
     res.redirect("/login");
   }
 }
-
 function aseguraDeslogueo(req, res, next) {
   if (req.isAuthenticated() == false) {
     return next();
@@ -59,54 +61,59 @@ router.get("/",async(req,res)=>{
   const Category = devuelveParametro(url,'categoria')
   
 
-  if (url == '/'){
-  Categoria.find().sort({orden:1})
-  .then(categorias =>{
-    res.render('search', {categorias})
-    });}
-  else {
+  if (url == "/") {
+    Categoria.find()
+      .sort({ orden: 1 })
+      .then(categorias => {
+        res.render("search", { categorias });
+      });
+  } else {
     // Buscas por Folio (ignora todo lo demás)
-    if(Folio !== undefined){
-      Denuncia.findOne({folio: Folio})
-      .then(denuncias=>{
+    if (Folio !== undefined) {
+      Denuncia.find({ folio: Folio }).then(denuncias => {
         console.log(denuncias);
-       return res.render('denuncias', {denuncias, uno:true, Folio})
-      })
-      
-    };
-   // Buscas solo por categoria, tiene lo demás apagado
-    if (Category !== '*' && Fecha == undefined && Folio == undefined){
-      Denuncia.find({categoria: Category})
-      .then(denuncias=>{
+        return res.render("mis-denuncias", { denuncias, uno: true, Folio });
+      });
+    }
+    // Buscas solo por categoria, tiene lo demás apagado
+    if (Category !== "*" && Fecha == undefined && Folio == undefined) {
+      Denuncia.find({ categoria: Category }).then(denuncias => {
         console.log(denuncias);
-       return res.render('denuncias', {denuncias, uno:false, Folio})
-      })};
+        return res.render("mis-denuncias", { denuncias, uno: false, Folio });
+      });
+    }
     // buscas todas las categorías, y tienes todo lo demás apagado:
-    if (Category == '*' && Fecha == undefined && Folio == undefined){
-       Denuncia.find({}).sort({folio:1})
-       .then(denuncias=>{
-       console.log(denuncias);
-       return res.render('denuncias', {denuncias, uno:false, Folio})
-        })};
+    if (Category == "*" && Fecha == undefined && Folio == undefined) {
+      Denuncia.find({})
+        .sort({ folio: 1 })
+        .then(denuncias => {
+          console.log(denuncias);
+          return res.render("mis-denuncias", { denuncias, uno: false, Folio });
+        });
+    }
     // Buscas por una fecha en específico, en todas las categorías:
-    if (Category == '*' && Fecha !== undefined && Folio == undefined){
-      Denuncia.find({fecha :Fecha}).sort({folio:1})
-      .then(denuncias=>{
-      console.log(denuncias);
-      return res.render('denuncias', {denuncias, uno:false, Folio})
-       })};
+    if (Category == "*" && Fecha !== undefined && Folio == undefined) {
+      Denuncia.find({ fecha: Fecha })
+        .sort({ folio: 1 })
+        .then(denuncias => {
+          console.log(denuncias);
+          return res.render("mis-denuncias", { denuncias, uno: false, Folio });
+        });
+    }
     // Busca por fecha dentro de solo una categoría:
-    if (Category !== '*' && Fecha !== undefined && Folio == undefined){
-    Denuncia.find({fecha :Fecha, categoria: Category}).sort({folio:1})
-      .then(denuncias=>{
-      console.log(denuncias);
-      return res.render('denuncias', {denuncias, uno:false, Folio})
-      })};
-
+    if (Category !== "*" && Fecha !== undefined && Folio == undefined) {
+      Denuncia.find({ fecha: Fecha, categoria: Category })
+        .sort({ folio: 1 })
+        .then(denuncias => {
+          console.log(denuncias);
+          return res.render("mis-denuncias", { denuncias, uno: false, Folio });
+        });
+    }
   }
   });
 
   router.get ('/:Folio',async(req,res)=>{
+    console.log(req.params, req.url)
     let{Folio} = req.params;
     Denuncia.findOne({folio: Folio}).populate('user').populate('categoria')
       .then(denuncias=>{
@@ -168,12 +175,11 @@ router.get("/",async(req,res)=>{
         })
         console.log(data);
        // res.render('denuncia-det', data)
-      
+      })})
 
-  })
-});
 
 router.post('/:Folio',aseguraLogueo,(req,res)=>{
+  console.log(req.params, req.url);
   let{Folio} = req.params;
   let user = req.user;
 

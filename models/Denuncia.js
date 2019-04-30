@@ -24,9 +24,9 @@ const denunciaSchema = new Schema(
         type: String,
         default: "Point"
       },
-      // address: {
-      //   type: String
-      // },
+      address: {
+        type: String
+      },
       // colonia: {
       //   type: String
       // },
@@ -34,13 +34,15 @@ const denunciaSchema = new Schema(
         type: [Number]
       }
     },
-    direccion:String,
-    fecha:String,
-    images: { type: [String] },
+    direccion: String,
+    fecha: String,
+    images: { type: Array, 
+      default : ["https://cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c.gif"]
+    },
     estatus: {
       type: String,
       required: true,
-      enum: ["Abierta", "Cerrada", "En Proceso"],
+      enum: ["Abierta", "Rechazada", "Completada", "En Proceso"],
       default: "Abierta"
     },
     categoria: { type: Schema.Types.ObjectId, required: true, ref: "Categoria" }

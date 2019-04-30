@@ -1,13 +1,13 @@
-<h1>Catálogo de Usuarios</h1>
+<div class="outer-cont">
+    <h1>Catálogo de Usuarios</h1>
+    <div class="inner-cont">
 <ul>
     {{#each users as |u|}}
-    <li>   
-         
-        <strong>{{u.nombre}} {{u.apellido}}    Rol: {{u.rol}}    Correo:{{u.email}}</strong>
-        <a  href ="/users/edit/{{u._id}}"> Editar </a>
-
-          </li>
+    <li>
+        <strong>{{u.nombre}} {{u.apellido}} Rol: {{u.rol}} Correo:{{u.email}}</strong>
+        <a href="/users/edit/{{u._id}}"> Editar </a>
+    </li>
     {{/each}}
 </ul>
-
-<a href="/">Inicio</a>
+    </div>
+</div>

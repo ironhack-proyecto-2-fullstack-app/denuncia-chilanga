@@ -2,10 +2,12 @@
   <h2>Mis denuncias!</h2>
   {{#each denuncias as |denuncia|}}
   <div class="inner-cont">
+
     <h4><a href ="/denuncia/{{denuncia.folio}}">{{denuncia.titulo}}</a></h4>
+
     <p>Status: <strong class="mis-denuncias-status">{{denuncia.estatus}}</strong></p>
     <p>Descripción: {{denuncia.descripcion}}</p>
-    <p>Ubicación: {{denuncia.ubicacion.coordinates}}</p>
+    <p>Ubicación: {{denuncia.direccion}}</p>
   </div>
   {{/each}}
 </div>
@@ -15,10 +17,12 @@
   function colorStatus() {
     var status = document.getElementsByClassName('mis-denuncias-status');
     for (let i in status) {
-      if (status[i].innerHTML == "Abierta") {
+      if (status[i].innerHTML == "Rechazada") {
         status[i].setAttribute('style', 'color: red');
-      } else if (status[i].innerHTML == "Cerrada"){
+      } else if (status[i].innerHTML == "Completada" || status[i].innerHTML == "Abierta"){
         status[i].setAttribute('style', 'color: green')
+      } else if (status[i].innerHTML == "En Proceso"){
+        status[i].setAttribute('style', 'color: yellow')
       };
     }
   };

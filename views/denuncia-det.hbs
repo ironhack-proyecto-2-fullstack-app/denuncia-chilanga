@@ -1,10 +1,14 @@
+<div class="inner-title">
+  <h2>¡Gracias por subir tu denuncia!</h2>
+  <h5>La estamos revisando.</h5>
+</div>
 <div class="outer-cont">
   <div class="inner-cont">
     <form>
       <div>
         <label for="Folio">Folio:</label>
         <input type="text" value="{{folio}}" disabled>
-        <label for="Estatus">Situación:</label>
+        <label for="Estatus">Status:</label>
         <input type="text" value="{{estatus}}" disabled>
       </div>
       <div>
@@ -34,7 +38,7 @@
       </div>
       <div>
         <label for="Direccion">Dirección:</label>
-        <input type="text" value="{{ubicacion.address}}" disabled>
+        <input type="text" value="{{direccion}}" id="denuncia-det-dir" disabled>
       </div>
   
       </form>
@@ -58,7 +62,7 @@
 
 
       <div>
-        <img src={{images.[0]}}></img>
+        <img src={{images.[0]}} style="width: 200px; height: auto;"></img>
       </div>
 
    
@@ -66,3 +70,16 @@
     <a href="/"> Inicio </a>
   </div>
 </div>
+
+<script>
+
+var direccion = document.getElementById('denuncia-det-dir');
+
+function dirCorta(){
+  let nuevaDir = direccion.value.split(',')[0];
+  return direccion.value = nuevaDir;
+}
+
+dirCorta();
+
+</script>

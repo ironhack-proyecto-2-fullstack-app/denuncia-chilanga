@@ -1,64 +1,67 @@
+<div class="main">
+  <h1 id="home-title">DENUNCIA<br><span>CHILANGA</span></h1>
+</div>
 <section class="outer-cont">
   <div class="inner-cont">
-<form {{#if login}} action="/login" 
-{{else}} action="/signup" {{/if}} 
-method="POST" class="form">
- {{#unless login}}
-  <div class="formulario-inner-cont">
-    <label for="">
-      Nombre(s):
-      <input  name="nombre" type= "text" placeholder="Tu(s) nombre(s)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-    </label>
+    <form {{#if login}} action="/login" {{else}} action="/signup" {{/if}} method="POST" class="form-group">
+      {{#unless login}}
+      <div class="formulario-inner-cont form-group">
+        <label for="">
+          Nombre(s):
+          <input name="nombre" type="text" placeholder="Tu(s) nombre(s)"
+            onkeyup="javascript:this.value=this.value.toUpperCase();">
+        </label>
+      </div>
+      <div class="formulario-inner-cont form-group">
+        <label for="">
+          Apellido(s):
+          <input name="apellido" type="text" placeholder="Tu(s) apellido(s)"
+            onkeyup="javascript:this.value=this.value.toUpperCase();">
+        </label>
+      </div>
+      {{/unless}}
+      <div class="formulario-inner-cont form-group">
+        <label for="">
+          E-mail:
+          <input name="email" type="email" placeholder="ej@ejemplo.com">
+        </label>
+      </div>
+      <div class="formulario-inner-cont form-group">
+        <label for="">
+          Contraseña:
+          <input type="password" name="password" placeholder="*******">
+        </label>
+      </div>
+
+      {{#unless login}}
+      <div class="formulario-inner-cont form-group">
+        <label for="">
+          Confirma tu contraseña:
+          <input type="password" name="passwordConfirm" placeholder="*******">
+        </label>
+      </div>
+      {{/unless}}
+
+      <div class="g-recaptcha form-group" data-sitekey="6Ldq3Z8UAAAAANaNEacz-2ldyhQA5Dkmfme8HXck"></div>
+
+      <button type="submit">
+        {{#if login}}
+        Iniciar sesión
+        {{else}}
+        Crear cuenta
+        {{/if}}
+      </button>
+
+      {{#if err}}
+      <p style="color:red">{{err}}</p>
+      {{/if}}
+
+      {{#if login}}
+      ¿No tienes cuenta?, regìstrate <a href="/signup">Aquí</a>
+      {{else}}
+      ¿Ya tienes cuenta?, ingresa <a href="/login">Aquí</a>
+      {{/if}}
+
+    </form>
   </div>
-  <div class="formulario-inner-cont">
-    <label for="">
-      Apellido(s):
-      <input  name="apellido" type= "text" placeholder="Tu(s) apellido(s)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-    </label>
-  </div>
-  {{/unless}}
-  <div class="formulario-inner-cont">
-    <label for="">
-      E-mail:
-      <input  name="email" type="email" placeholder="ej@ejemplo.com">
-    </label>
-  </div>
-  <div class="formulario-inner-cont">
-    <label for="">
-      Contraseña:
-      <input type="password" name="password">
-    </label>
-  </div>
-
-  {{#unless login}}
-  <div class="formulario-inner-cont">
-    <label for="">
-      Confirma tu contraseña:
-      <input type="password" name="passwordConfirm">
-    </label>
-  </div>
-  {{/unless}}
-
-  <div class="g-recaptcha" data-sitekey="6Ldq3Z8UAAAAANaNEacz-2ldyhQA5Dkmfme8HXck"></div>
-
-  <button type="submit">
-    {{#if login}}
-    Iniciar sesión
-    {{else}}
-    Crear cuenta
-    {{/if}}
-  </button>
-
-  {{#if err}}
-  <p style="color:red">{{err}}</p>
-  {{/if}}
-
-  {{#if login}}
-  ¿No tienes cuenta?, regìstrate <a href="/signup">Aquí</a>
-  {{else}}
-  ¿Ya tienes cuenta?, ingresa <a href="/login">Aquí</a>
-  {{/if}}
-
-</form>
-</div>
 </section>

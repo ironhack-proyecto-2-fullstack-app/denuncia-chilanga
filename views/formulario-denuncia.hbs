@@ -1,56 +1,62 @@
 <section class="formulario-cont">
 
-<h2>Ingresa la información de tu denuncia</h2>
-<form action="/generar-denuncia" method="POST" enctype="multipart/form-data" class="form" id="formulario-denuncia">
+  <h2>Ingresa la información de tu denuncia</h2>
+  <form action="/generar-denuncia" method="POST" enctype="multipart/form-data" class="form" id="formulario-denuncia">
 
-  <div class="formulario-inner-cont">
-    <label for="titulo">Título</label>
-    <input type="text" name="titulo">
-  </div>
+    <div class="formulario-inner-cont">
+      <label for="titulo">Título</label>
+      <input type="text" name="titulo">
+    </div>
 
-  <div class="formulario-inner-cont">
-    <label for="descripcion">Descripción</label>
-    <textarea name="descripcion" id="descripcion" cols="30"
-      rows="10"></textarea>
-  </div>
+    <div class="formulario-inner-cont">
+      <label for="descripcion">Descripción</label>
+      <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+    </div>
 
-  <div class="formulario-inner-cont" style="display: none">
-    <label for="">
-      Longitude:
-      <input id="lng" type="text" name="lng" value="{{ubicacion.coordenadas.[0]}}" />
-    </label>
-  </div>
-  <div class="formulario-inner-cont" style="display: none">
-    <label for="">
-      Latitude:
-      <input id="lat" type="text" name="lat" value="{{ubicacion.coordenadas.[1]}}" />
-    </label>
+    <div class="formulario-inner-cont" style="display: none">
+      <label for="">
+        Longitude:
+        <input id="lng" type="text" name="lng" value="" />
+      </label>
+    </div>
+    <div class="formulario-inner-cont" style="display: none">
+      <label for="">
+        Latitude:
+        <input id="lat" type="text" name="lat" value="" />
+      </label>
 
-  </div>
-  <div class="formulario-inner-cont">
-  <label for="">Ubicación</label>
-  <div id="search" type="text" name="direccion"></div>
-  </div>
+    </div>
+    <div class="formulario-inner-cont" style="display: none">
+      <label for="">
+        Direccion:
+        <input id="direccion" type="text" name="direccion" value="" />
+      </label>
 
-  <div id='map' style='width: 400px; height: 300px;'></div>
+    </div>
+    <div class="formulario-inner-cont">
+      <label for="">Ubicación</label>
+      <div id="search" type="text" name="direccion"></div>
+    </div>
 
-  <div class="formulario-inner-cont">
-    <label for="images">Imagen(es)</label>
-    <input type="file" name="images" multiple>
-  </div>
+    <div id='map' style='width: 400px; height: 300px;'></div>
 
-  <div class="formulario-inner-cont">
-    <label for="categoria">Categoría</label>
-    <select name="categoria" id="">
-      <option value="" selected disabled>Selecciona una categoría</option>
-      {{#each categorias as |c|}}
-      <option value="{{_id}}">{{descripcion}}</option>
-      {{/each}}
-    </select>
-  </div>
+    <div class="formulario-inner-cont">
+      <label for="images">Imagen(es)</label>
+      <input type="file" name="images" multiple>
+    </div>
 
-  <button type="submit">Denuncia!</button>
-</form>
+    <div class="formulario-inner-cont">
+      <label for="categoria">Categoría</label>
+      <select name="categoria" id="">
+        <option value="" selected disabled>Selecciona una categoría</option>
+        {{#each categorias as |c|}}
+        <option value="{{_id}}">{{descripcion}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <button type="submit" id="denuncia-btn">¡Denuncia!</button>
+  </form>
 </section>
 
 <script>
@@ -61,11 +67,14 @@
     "pk.eyJ1IjoidG9tYXNmcmFuY2lzY29hciIsImEiOiJjanUwbHYzdGEzZ2piNDBwY2hsMWFrcG1nIn0.I9dBd93c-Yph7coxBiWO6A";
 
   let geocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken
+    accessToken: mapboxgl.accessToken,
+    countries: 'mx',
+    bbox: [-99.347354, 19.205034, -98.944098, 19.582059]
   })
 
   var input_lng = document.getElementById("lng");
   var input_lat = document.getElementById("lat");
+  var input_dir = document.getElementById("direccion")
 
   var map = new mapboxgl.Map({
     container: "map",
@@ -96,13 +105,17 @@
   }
 
   geocoder.on("result", res => {
-    console.log(res.result);
+    console.log('Esta es la dirección: ', res.result.place_name);
     let [lng, lat] = res.result.center;
+    let dir = res.result.place_name;
     input_lng.value = lng;
     input_lat.value = lat;
+    input_dir.value = dir;
+    const marker = new mapboxgl.Marker()
+      .setLngLat([lng, lat])
+      .addTo(map)
   });
 
   document.getElementById("search").appendChild(geocoder.onAdd(map));
 
 </script>
-
