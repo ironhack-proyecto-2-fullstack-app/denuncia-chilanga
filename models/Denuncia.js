@@ -36,7 +36,10 @@ const denunciaSchema = new Schema(
     },
     direccion: String,
     fecha: String,
-    images: { type: [String] },
+    images: {
+      type: [String],
+      default: ['../images/no-image.gif']
+    },
     estatus: {
       type: String,
       required: true,

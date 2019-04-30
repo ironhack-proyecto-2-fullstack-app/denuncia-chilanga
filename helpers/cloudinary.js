@@ -11,7 +11,7 @@ cloudinary.config({
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
   folder: 'denuncia-chilanga',
-  allowedFormats: ['jpg', 'png', 'jpeg'],
+  allowedFormats: ['jpg', 'png', 'jpeg', 'gif'],
   filename: function (req, file, cb){
     cb(null, file.originalName);
   }

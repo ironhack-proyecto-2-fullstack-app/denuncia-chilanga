@@ -58,7 +58,8 @@ button > a {
   flex-direction: row;
   justify-content: space-between;
   width: 75%;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  border-top: 1px dashed white; }
 
 .signup-login-int {
   display: flex;
@@ -141,5 +142,21 @@ button > a {
 
 .search-inner {
   margin: 10px 0; }
+
+.card-outer-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-top: 30px; }
+
+.card-cont {
+  width: 20%;
+  display: inline-block;
+  margin: 10px; }
+
+.card {
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

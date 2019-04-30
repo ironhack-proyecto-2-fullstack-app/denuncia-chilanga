@@ -11,6 +11,7 @@ const path         = require('path');
 const session      = require("express-session");
 const passport     = require("./helpers/passport");
 
+hbs.registerPartials(path.join(__dirname, '/views/partials'))
 
 mongoose
   .connect(process.env.DB, {useNewUrlParser: true})
