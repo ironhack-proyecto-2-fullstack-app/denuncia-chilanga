@@ -7,11 +7,11 @@ const comentarioSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
       ref: "Denuncia"},
-    name:{
+    user:{
       type: Schema.Types.ObjectId,
       required: true,
       ref: "User"},
-    descripcion:{type: String, unique:true}
+    comentario:{type: String}
   }, {timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"}}
 );
 

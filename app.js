@@ -77,7 +77,8 @@ const categoria = require('./routes/categoria');
 app.use('/categoria', categoria);
 const denuncia = require('./routes/denuncia');
 app.use('/denuncia', denuncia);
-
+const graph = require('./routes/graph');
+app.use('/graph', graph);
 
 
 module.exports = app;
