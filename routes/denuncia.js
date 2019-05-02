@@ -6,7 +6,7 @@ const Categoria = require('../models/Categoria');
 const Denuncia = require('../models/Denuncia');
 const Comentario = require('../models/Comentario');
 
-
+const app = express();
 // Estas funciones me dejarán extraer parámetros de la URL, porque no sé porqué no funciona req.params
 
 const desglosaParametros = function(url, nro, dato) {
@@ -105,15 +105,15 @@ router.get("/",async(req,res)=>{
       Denuncia.find({ fecha: Fecha, categoria: Category })
         .sort({ folio: 1 })
         .then(denuncias => {
-          console.log(denuncias);
-          return res.render("mis-denuncias", { denuncias, uno: false, Folio });
+          //console.log(denuncias);
+          return res.render("mis-denuncias", { denuncias, uno: false, Folio, faveds });
         });
     }
   }
   });
 
   router.get ('/:Folio',async(req,res)=>{
-    console.log(req.params, req.url)
+    //console.log(req.params, req.url)
     let{Folio} = req.params;
     Denuncia.findOne({folio: Folio}).populate('user').populate('categoria')
       .then(denuncias=>{
@@ -127,13 +127,33 @@ router.get("/",async(req,res)=>{
         let categoria = denuncias.categoria;
         let fecha = denuncias.fecha;
         let folio = denuncias.folio;
+        let faveds = denuncias.favs.length;
+        
+        let detectaUser = function (){
+          if (req.user == undefined){return 0}
+          else {return req.user._id}
+        };
+
+        let found = denuncias.favs.find(function(element) {
+          return element == detectaUser();
+        });
+
+        let indicafaved = function(){
+          if (found == undefined){return false}
+          else {return true}
+        };
+
+        let isFaved = indicafaved();
+        console.log('tu usuario es', detectaUser())
+        console.log('El arreglo en el que buscas es:', denuncias.favs);
+        console.log('la conicidencia es:',found);
         let log = function (){
           if (req.isAuthenticated()){return true}
           else {return false}
         };
         let logged = log()
         var data ={user:usr, ubicacion: ubicacion, images:images, estatus:estatus,_id: _id, titulo:titulo, 
-          descripcion:descripcion,categoria:categoria,fecha:fecha, folio:folio, logged };
+          descripcion:descripcion,categoria:categoria,fecha:fecha, folio:folio, logged, faveds, isFaved };
   
         Comentario.find({denuncia:_id}).populate('user').sort({createdAt:1})
         .then ( comentarios=>{
@@ -164,7 +184,7 @@ router.get("/",async(req,res)=>{
           let coment = poneEditable(inter,logueado);
           console.log(coment[0].user, coment[0].edit, coment[0]);
            data ={user:usr, ubicacion: ubicacion, images:images, estatus:estatus,_id: _id, titulo:titulo, 
-            descripcion:descripcion,categoria:categoria,fecha:fecha, folio:folio, logged, comentarios:coment, logueado};
+            descripcion:descripcion,categoria:categoria,fecha:fecha, folio:folio, logged, comentarios:coment, logueado, faveds, isFaved};
            
              res.render('denuncia-det',data)
         }

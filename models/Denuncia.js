@@ -45,6 +45,7 @@ const denunciaSchema = new Schema(
       enum: ["Abierta", "Rechazada", "Completada", "En Proceso"],
       default: "Abierta"
     },
+    favs : [String],
     categoria: { type: Schema.Types.ObjectId, required: true, ref: "Categoria" }
   },
   { timestamps: true }
