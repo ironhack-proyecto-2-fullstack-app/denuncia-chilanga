@@ -1,6 +1,8 @@
 {{#if uno}}
 <div class="card-outer-cont">
-  {{> denunciaCard denuncias}}
+  {{#each denuncias as |denuncia|}}
+  {{> denunciaCard denuncia}}
+  {{/each}}
   <div id="search"></div>
   <div id='map' style='width: 400px; height: 300px;'></div>
 </div>
@@ -13,7 +15,8 @@
 
 <script>
 
-  const point = [{{ denuncias.ubicacion.coordinates }}]
+  let lng = document.getElementById('coordinates').innerText.split(',')[0];
+  let lat = document.getElementById('coordinates').innerText.split(',')[1];
 
   mapboxgl.accessToken =
     "pk.eyJ1IjoidG9tYXNmcmFuY2lzY29hciIsImEiOiJjanUwbHYzdGEzZ2piNDBwY2hsMWFrcG1nIn0.I9dBd93c-Yph7coxBiWO6A";
@@ -25,12 +28,12 @@
   let map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/navigation-preview-day-v2",
-    center: point,
+    center: [lng, lat],
     zoom: 14
   });
 
   const marker = new mapboxgl.Marker()
-    .setLngLat(point)
+    .setLngLat([lng, lat])
     .addTo(map)
 
   map.addControl(new mapboxgl.NavigationControl());

@@ -25,9 +25,9 @@
 <body>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <a href="/">Home</a>
-    {{#if home}}
+    {{#if user.home}}
     <div class="welcome-user">
-      <h5>¡Hola, {{nombre}} {{apellido}}! - Revisa <a href="/mis-denuncias/{{id}}">tus denuncias</a></h5>
+      <h5>¡Hola, {{user.nombre}} {{user.apellido}}! - Revisa <a href="/mis-denuncias/{{id}}">tus denuncias</a></h5>
     </div>
     {{/if}}
     <a href="/denuncia">Busca una denuncia</a>
