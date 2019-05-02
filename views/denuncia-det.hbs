@@ -12,6 +12,17 @@
         <input type="text" value="{{estatus}}" disabled>
       </div>
       <div>
+        favs: {{faveds}}
+      </div>
+      {{#if logged}}
+      {{#if isFaved}}
+      <button id="fav" type ="submit" method="POST"><a href="/faved">quitar Favorito</a></button>
+      {{/if}}
+      {{#unless isFaved}}
+      <button id="fav" type ="submit" method="POST"><a href="/faved">marcar Favorito</a></button>
+      {{/unless}}
+      {{/if}}
+      <div>
         <label for="Fecha">Fecha:</label>
         <input type="text" value="{{fecha}}" disabled>
         <label for="Categoria">Categoria:</label>
@@ -83,3 +94,6 @@ function dirCorta(){
 dirCorta();
 
 </script>
+
+ {{#if logged}} <script src="/javascripts/denunciadet.js"></script> {{/if}}
+  

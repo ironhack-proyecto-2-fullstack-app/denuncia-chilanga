@@ -158,4 +158,84 @@ router.get('/mis-denuncias/:id', aseguraLogueo, (req, res) => {
     })
 })
 
+// Para el Faveo:
+
+router.post('/faved', async(req, res) => {
+  console.log ('Aqui deberia de marcarse el Fav!!!')
+
+  let user = req.user._id
+  let url = req.headers.referer;
+  let detectaFolio = (url)=>{
+    let palabra ='/denuncia/'
+    let lugar = url.indexOf(palabra);
+    let folio = url.substr(lugar + palabra.length);
+    return Number(folio)
+    };
+  let Usser = String(user);
+  let Folio = detectaFolio(url);
+  //console.log (user,Folio)
+
+  // Generamos la bùsqueda a la BD:
+  Denuncia.aggregate([
+    {$match:{ folio: Folio}},
+    { $unwind : "$favs" },
+    {$match:{ favs: Usser}}
+    ])
+
+    .then ( data => {
+      console.log('Esta es la bùsqueda :',data, 'Cuenta con', data.length, 'favs ahorita');
+
+      let faveds = data.length;
+// Esto es lo que hace si encuentra informaciòn, deberìa de quitarla con un pull:
+      var actualizaBD= function(){
+
+        if(faveds !== 0){ 
+   return Denuncia.findOneAndUpdate({folio: Folio}, 
+          {$pull:{favs: Usser}},
+          { multi: true })
+          .then(() =>{ //console.log(res)
+            res.redirect("/denuncia"+Folio);
+          })
+            .catch(error =>{
+              console.log(error)
+            }) 
+    }
+
+    if ( faveds ==0){
+      return Denuncia.findOneAndUpdate(
+        {folio: Folio}, 
+        {$push:{favs: Usser}},
+        { multi: true }
+        ).then(() =>{ //console.log(res)
+          //res.redirect("/denuncia"+Folio)
+        })
+          .catch(error =>{
+            console.log(error)
+          }) 
+    } };
+
+    actualizaBD();
+    return res.redirect("/denuncia/"+Folio)
+   
+  })
+  .catch ( err => { 
+      
+    console.log('no encontró información con ese criterio', err)
+        }) 
+      });
+
+      router.get("/faved", async(req, res) => {
+        
+        let url = req.rawHeaders[11];
+       let detectaFolio = (url)=>{
+          let palabra ='/denuncia/'
+          let lugar = url.indexOf(palabra);
+          let folio = url.substr(lugar + palabra.length);
+          return Number(folio)
+          };
+        
+       let Folio = detectaFolio(url);
+        console.log(url, "Folo = ", Folio);
+        res.redirect("/denuncia/"+Folio);
+      });
 module.exports = router;
