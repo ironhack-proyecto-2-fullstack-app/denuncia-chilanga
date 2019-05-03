@@ -8,9 +8,13 @@
 </div>
 {{/if}}
 {{#unless uno}}
+<div class="card-cont">
 {{#each denuncias as |d|}}
+
 {{> denunciaCard d}}
+
 {{/each}}
+</div>
 {{/unless}}
 
 <script>
@@ -28,7 +32,7 @@
   let map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/navigation-preview-day-v2",
-    center: [lng, lat],
+    center: [lng,lat],
     zoom: 14
   });
 

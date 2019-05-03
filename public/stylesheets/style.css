@@ -71,13 +71,10 @@ button > a {
   margin: 0 10px 0 0; }
 
 #home-title {
-  font-size: 80px;
+  font-size: 60px;
   font-family: "Neucha", cursive;
   text-align: center;
   margin: 50px 0 40px 0; }
-
-#home-title span {
-  padding-left: 70px; }
 
 #denuncia-btn {
   width: 50%;
@@ -152,12 +149,16 @@ button > a {
   margin-top: 30px; }
 
 .card-cont {
-  width: 20%;
-  display: inline-block;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: 10px; }
 
 .card {
-  width: 100%; }
+  width: 25%;
+  margin: 10px; }
 
 .form-comentario {
   display: flex;
