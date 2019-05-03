@@ -76,22 +76,20 @@
         <img src={{images.[0]}} style="width: 200px; height: auto;"></img>
       </div>
 
-   
-
-    <a href="/"> Inicio </a>
+    </form>
   </div>
 </div>
 
 <script>
 
-var direccion = document.getElementById('denuncia-det-dir');
+  var direccion = document.getElementById('denuncia-det-dir');
 
-function dirCorta(){
-  let nuevaDir = direccion.value.split(',')[0];
-  return direccion.value = nuevaDir;
-}
+  function dirCorta() {
+    let nuevaDir = direccion.value.split(',')[0];
+    return direccion.value = nuevaDir;
+  }
 
-dirCorta();
+  dirCorta();
 
 </script>
 

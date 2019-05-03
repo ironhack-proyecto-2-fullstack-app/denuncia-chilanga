@@ -237,6 +237,6 @@ router.post('/faved', async(req, res) => {
         
        let Folio = detectaFolio(url);
         console.log(url, "Folo = ", Folio);
-        res.redirect("/denuncia/"+Folio);
+        setTimeout(res.redirect("/denuncia/"+Folio), 5000);
       });
 module.exports = router;

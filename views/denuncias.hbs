@@ -1,26 +1,19 @@
-
 {{#if uno}}
-<div><a href ="/denuncia/{{denuncias.folio}}">Folio: {{denuncias.folio}}</a></div>
-<div>Titulo: {{denuncias.titulo}}</div>
-<div>Status: {{denuncias.estatus}}</div>
-<div>Descripción: {{denuncias.descripcion}}</div>
-<div>Ubicación: {{denuncias.ubicacion.address}}</div>
-<div id="search"></div>
-<div id='map' style='width: 400px; height: 300px;'></div>
+<div class="card-outer-cont">
+  {{> denunciaCard denuncias}}
+  <div id="search"></div>
+  <div id='map' style='width: 400px; height: 300px;'></div>
+</div>
 {{/if}}
 {{#unless uno}}
-{{#each denuncias}}
-<div><a href = "/denuncia/{{folio}}">Folio: {{folio}}</a></div>
-<div>Título: {{titulo}}</div>
-<div>Status: {{estatus}}</div>
-<div>Ubicación: {{ubicacion.coordenadas}}</div>
-
+{{#each denuncias as |d|}}
+{{> denunciaCard d}}
 {{/each}}
 {{/unless}}
 
 <script>
 
-  const point = [{{denuncias.ubicacion.coordenadas}}]
+  const point = [{{ denuncias.ubicacion.coordinates }}]
 
   mapboxgl.accessToken =
     "pk.eyJ1IjoidG9tYXNmcmFuY2lzY29hciIsImEiOiJjanUwbHYzdGEzZ2piNDBwY2hsMWFrcG1nIn0.I9dBd93c-Yph7coxBiWO6A";
