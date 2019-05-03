@@ -5,7 +5,7 @@ const passport = require("passport");
 const Categoria = require("../models/Categoria");
 const Denuncia = require("../models/Denuncia");
 const Comentario = require("../models/Comentario");
-
+const moment = require('moment');
 // Estas funciones me dejarán extraer parámetros de la URL, porque no sé porqué no funciona req.params
 
 const desglosaParametros = function(url, nro, dato) {
@@ -143,9 +143,9 @@ router.get("/", async (req, res) => {
         };
 
         let isFaved = indicafaved();
-        console.log('tu usuario es', detectaUser())
-        console.log('El arreglo en el que buscas es:', denuncias.favs);
-        console.log('la conicidencia es:',found);
+       // console.log('tu usuario es', detectaUser())
+       // console.log('El arreglo en el que buscas es:', denuncias.favs);
+       // console.log('la conicidencia es:',found);
         let log = function (){
           if (req.isAuthenticated()){return true}
           else {return false}
@@ -163,15 +163,19 @@ router.get("/", async (req, res) => {
           };
 
           let logueado = detectaUsuario();
+          //let fecha = comentarios.createdAt;
+         // let tiempo= moment(fecha).format('LLL');
+         
           var inter = comentarios;
-
+        //  inter.fch = fecha;
+        //  inter.tmp = tiempo; 
           var poneEditable = function(array, logueado) {
             let arreglo = array;
             let usuario = logueado;
 
             let largo = arreglo.length;
             let detecta = function(n) {
-              console.log(n, String(arreglo[n].user._id), String(usuario));
+             // console.log(n, String(arreglo[n].user._id), String(usuario));
               if (String(arreglo[n].user._id) !== String(usuario)) {
                 return (arreglo[n].edit = false);
               } else {
@@ -185,7 +189,9 @@ router.get("/", async (req, res) => {
           };
           //let coment = comentarios;
           let coment = poneEditable(inter, logueado);
-          console.log(coment[0].user, coment[0].edit, coment[0]);
+         console.log(coment);
+          //console.log(coment[0].user, coment[0].edit, coment[0]);
+          //console.log(coment)
           data = {
             user: usr,
             ubicacion: ubicacion,
@@ -211,7 +217,7 @@ router.get("/", async (req, res) => {
           console.log("no tiene comentarios", err);
           res.render("denuncia-det", data);
         });
-      console.log(data);
+     // console.log(data);
       // res.render('denuncia-det', data)
     });
 });

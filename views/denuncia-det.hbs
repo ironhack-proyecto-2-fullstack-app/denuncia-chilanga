@@ -55,12 +55,13 @@
     </form>
     {{#if comentarios}}Comentarios:{{/if}}
     {{#each comentarios as |C|}}
-    <div>
-      {{C.user.nombre}} {{C.user.apellido}} ({{C.createdAt}}):
+    <div class="inner-cont ">
+      {{C.user.nombre}} {{C.user.apellido}} DIJO:
       <div>{{C.comentario}}</div>
       {{#if C.edit}} <a href="/comentarios/{{C._id}}/edit"><button>Editar</button></a>{{/if}}
     </div>
     {{/each}}
+    <p></p>
     {{#if logged}}
     <div>
       <form method="POST" class="form-comentario">
@@ -69,6 +70,7 @@
       </form>
     </div>
     {{/if}}
+    <p></p>
     <div>
       <img src={{images.[0]}} style="width: 200px; height: auto;"></img>
     </div>
