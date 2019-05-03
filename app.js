@@ -79,6 +79,6 @@ const denuncia = require('./routes/denuncia');
 app.use('/denuncia', denuncia);
 const graph = require('./routes/graph');
 app.use('/graph', graph);
-
-
+const comentarios = require('./routes/comentarios')
+app.use('/comentarios',comentarios);
 module.exports = app;

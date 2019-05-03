@@ -1,0 +1,18 @@
+<h1>
+  Aquì podràs editar o borrar tu comentario:
+</h1>
+<section class="outer-cont">
+  <div class="inner-cont">
+    <form   method="POST" class="form-comentario">
+
+        <textarea name="comentario" cols="60" rows="5" >{{data.comentario}}</textarea>
+  
+
+      <div class="formulario-inner-cont form-group">
+      </div>
+      <div><button "submit">Guarda los cambios</button></div>
+      <div>o</div>
+      <div><button><a href="/comentarios/{{data._id}}/del">Borra tu comentario</a></button></div>
+    </form>
+  </div>
+</section>
