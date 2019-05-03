@@ -17,11 +17,12 @@
   </a>
 </div>
     <div class="card-body">
-      <h5 class="card-title">Título: {{titulo}}</h5>
+      <h5 class="card-title">Título: <a href="/denuncia/{{folio}}">{{titulo}}</a></h5>
       <p class="card-text">Folio: {{folio}}</p>
       <p class="card-text">Descripcion: {{descripcion}}</p>
-      <p class="card-text">Ubicación: {{direccion}}</p>
+      <p class="card-text">Ubicación: {{direccion}}</p> 
       <p class="card-text" id="coordinates" style="display: none">{{ubicacion.coordinates}}</p>
       <p class="card-text"><small class="text-muted">Status: {{estatus}}</small></p>
+      
     </div>
   </div>

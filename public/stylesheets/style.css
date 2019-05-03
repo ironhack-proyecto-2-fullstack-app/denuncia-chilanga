@@ -165,13 +165,13 @@ button > a {
   flex-direction: column;
   align-items: center; }
 
-  .inner-contdos {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    margin-top: 50px;
-    background-color: rgba(172, 200, 236, 0.664);
-    width: 80%;
-    text-align: left; }
+.inner-contdos {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-top: 50px;
+  background-color: rgba(15, 164, 201, 0.404);
+  width: 80%;
+  text-align: left; }
 
 /*# sourceMappingURL=style.css.map */
