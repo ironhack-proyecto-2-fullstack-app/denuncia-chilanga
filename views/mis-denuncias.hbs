@@ -1,15 +1,11 @@
 <div class="outer-cont">
   <h2>Mis denuncias!</h2>
+ 
+  <div class="card-cont">
   {{#each denuncias as |denuncia|}}
-  <div class="inner-cont">
-
-    <h4><a href ="/denuncia/{{denuncia.folio}}">{{denuncia.titulo}}</a></h4>
-
-    <p>Status: <strong class="mis-denuncias-status">{{denuncia.estatus}}</strong></p>
-    <p>Descripción: {{denuncia.descripcion}}</p>
-    <p>Ubicación: {{denuncia.direccion}}</p>
-  </div>
+  {{> denunciaCard denuncia}}  
   {{/each}}
+  </div>
 </div>
 
 <script>

@@ -55,7 +55,7 @@
     </form>
     {{#if comentarios}}Comentarios:{{/if}}
     {{#each comentarios as |C|}}
-    <div class="inner-cont ">
+    <div class="inner-contdos">
       {{C.user.nombre}} {{C.user.apellido}} DIJO:
       <div>{{C.comentario}}</div>
       {{#if C.edit}} <a href="/comentarios/{{C._id}}/edit"><button>Editar</button></a>{{/if}}

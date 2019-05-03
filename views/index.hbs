@@ -46,13 +46,13 @@
 
       var chart = new Chart(ctx, {
         // The type of chart we want to create
-        type: 'bar',
+        type: 'line',
 
         // The data for our dataset
         data: {
           labels: ["{{fechas.[0]}}", "{{fechas.[1]}}", "{{fechas.[2]}}", "{{fechas.[3]}}", "{{fechas.[4]}}", "{{fechas.[5]}}", "{{fechas.[6]}}"],
           datasets: [{
-            label: 'Tu semana:',
+            label: 'Actividad de los últimos 7 días',
             backgroundColor: '{{color_graph}}',
             borderColor: '{{color_graph}}',
             data: ["{{vals.[0]}}", "{{vals.[1]}}", "{{vals.[2]}}", "{{vals.[3]}}", "{{vals.[4]}}", "{{vals.[5]}}", "{{vals.[6]}}"]

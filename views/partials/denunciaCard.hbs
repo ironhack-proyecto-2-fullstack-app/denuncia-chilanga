@@ -1,5 +1,21 @@
   <div class="card mb-3">
-    <img src="{{images}}" class="card-img-top" alt="foto-denuncia" style="height: 50%">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    {{#each images as |imagen|}}
+    <div class="carousel-item active">
+      <img src="{{imagen}}" class="d-block w-100" alt="...">
+    </div>
+    {{/each}}
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
     <div class="card-body">
       <h5 class="card-title">Título: {{titulo}}</h5>
       <p class="card-text">Folio: {{folio}}</p>

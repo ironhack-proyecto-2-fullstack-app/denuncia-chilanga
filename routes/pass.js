@@ -152,12 +152,12 @@ router.get("/home", aseguraLogueo, (req, res) => {
   var user = func();
 
   var hoy = ponefecha();
-  var uno = sumaDias(hoy,0);
-  var dos = sumaDias(hoy,-1);
-  var tres = sumaDias(hoy,-2);
-  var cuatro = sumaDias(hoy,-3);
-  var cinco = sumaDias(hoy,-4);
-  var seis = sumaDias(hoy,-5);
+  var uno = sumaDias(hoy,-1);
+  var dos = sumaDias(hoy,-2);
+  var tres = sumaDias(hoy,-3);
+  var cuatro = sumaDias(hoy,-4);
+  var cinco = sumaDias(hoy,-5);
+  var seis = sumaDias(hoy,-6);
   
   
 Denuncia.aggregate([
