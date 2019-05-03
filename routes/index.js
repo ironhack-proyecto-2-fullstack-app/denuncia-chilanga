@@ -150,6 +150,7 @@ router.get('/mis-denuncias', (req, res) => {
 
 router.get('/mis-denuncias/:id', aseguraLogueo, (req, res) => {
   let {id} = req.user._id;
+  console.log(req.params)
   Denuncia.find({ user: new ObjectId(id) })
     .then( denuncias => {
       res.render('mis-denuncias', {denuncias})

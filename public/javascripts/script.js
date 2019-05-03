@@ -1,7 +1,7 @@
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-  console.log("bienvenido a Denncia Chilanga")
+  console.log("Bienvenido a Denuncia Chilanga")
   }
   ,
   false

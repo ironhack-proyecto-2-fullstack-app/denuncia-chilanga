@@ -2,11 +2,10 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const passport = require("passport");
-const Categoria = require('../models/Categoria');
-const Denuncia = require('../models/Denuncia');
-const Comentario = require('../models/Comentario');
+const Categoria = require("../models/Categoria");
+const Denuncia = require("../models/Denuncia");
+const Comentario = require("../models/Comentario");
 
-const app = express();
 // Estas funciones me dejarán extraer parámetros de la URL, porque no sé porqué no funciona req.params
 
 const desglosaParametros = function(url, nro, dato) {
@@ -54,12 +53,11 @@ function aseguraDeslogueo(req, res, next) {
 
 // terminan los middlewares
 
-router.get("/",async(req,res)=>{
+router.get("/", async (req, res) => {
   const url = req.url;
-  const Folio = devuelveParametro(url,'folio')
-  const Fecha = devuelveParametro(url,'fecha')
-  const Category = devuelveParametro(url,'categoria')
-  
+  const Folio = devuelveParametro(url, "folio");
+  const Fecha = devuelveParametro(url, "fecha");
+  const Category = devuelveParametro(url, "categoria");
 
   if (url == "/") {
     Categoria.find()
@@ -72,14 +70,14 @@ router.get("/",async(req,res)=>{
     if (Folio !== undefined) {
       Denuncia.find({ folio: Folio }).then(denuncias => {
         console.log(denuncias);
-        return res.render("mis-denuncias", { denuncias, uno: true, Folio });
+        res.render("denuncias", { denuncias, uno: true, Folio });
       });
     }
     // Buscas solo por categoria, tiene lo demás apagado
     if (Category !== "*" && Fecha == undefined && Folio == undefined) {
       Denuncia.find({ categoria: Category }).then(denuncias => {
         console.log(denuncias);
-        return res.render("mis-denuncias", { denuncias, uno: false, Folio });
+        return res.render("denuncias", { denuncias, uno: false, Folio });
       });
     }
     // buscas todas las categorías, y tienes todo lo demás apagado:
@@ -88,7 +86,7 @@ router.get("/",async(req,res)=>{
         .sort({ folio: 1 })
         .then(denuncias => {
           console.log(denuncias);
-          return res.render("mis-denuncias", { denuncias, uno: false, Folio });
+          return res.render("denuncias", { denuncias, uno: false, Folio });
         });
     }
     // Buscas por una fecha en específico, en todas las categorías:
@@ -97,7 +95,7 @@ router.get("/",async(req,res)=>{
         .sort({ folio: 1 })
         .then(denuncias => {
           console.log(denuncias);
-          return res.render("mis-denuncias", { denuncias, uno: false, Folio });
+          return res.render("denuncias", { denuncias, uno: false, Folio });
         });
     }
     // Busca por fecha dentro de solo una categoría:
@@ -128,6 +126,7 @@ router.get("/",async(req,res)=>{
         let fecha = denuncias.fecha;
         let folio = denuncias.folio;
         let faveds = denuncias.favs.length;
+        let direccion = denuncias.direccion;
         
         let detectaUser = function (){
           if (req.user == undefined){return 0}
@@ -153,7 +152,7 @@ router.get("/",async(req,res)=>{
         };
         let logged = log()
         var data ={user:usr, ubicacion: ubicacion, images:images, estatus:estatus,_id: _id, titulo:titulo, 
-          descripcion:descripcion,categoria:categoria,fecha:fecha, folio:folio, logged, faveds, isFaved };
+          descripcion:descripcion,categoria:categoria,fecha:fecha, folio:folio, logged, faveds, isFaved, direccion: direccion };
   
         Comentario.find({denuncia:_id}).populate('user').sort({createdAt:1})
         .then ( comentarios=>{
@@ -166,57 +165,75 @@ router.get("/",async(req,res)=>{
           let logueado = detectaUsuario();
           var inter = comentarios;
 
-          var poneEditable= function(array,logueado){
-            let arreglo = array
-            let usuario = logueado
-            
-            let largo = arreglo.length
-            let detecta = function (n){
+          var poneEditable = function(array, logueado) {
+            let arreglo = array;
+            let usuario = logueado;
+
+            let largo = arreglo.length;
+            let detecta = function(n) {
               console.log(n, String(arreglo[n].user._id), String(usuario));
-              if (String(arreglo[n].user._id) !== String(usuario)){return arreglo[n].edit = false }
-              else{return arreglo[n].edit = true }
+              if (String(arreglo[n].user._id) !== String(usuario)) {
+                return (arreglo[n].edit = false);
+              } else {
+                return (arreglo[n].edit = true);
+              }
+            };
+            for (i = 0; i < largo; i++) {
+              detecta(i);
             }
-            for(i = 0; i< largo; i++){
-            detecta(i)}
-            return arreglo
-            }
+            return arreglo;
+          };
           //let coment = comentarios;
-          let coment = poneEditable(inter,logueado);
+          let coment = poneEditable(inter, logueado);
           console.log(coment[0].user, coment[0].edit, coment[0]);
-           data ={user:usr, ubicacion: ubicacion, images:images, estatus:estatus,_id: _id, titulo:titulo, 
-            descripcion:descripcion,categoria:categoria,fecha:fecha, folio:folio, logged, comentarios:coment, logueado, faveds, isFaved};
-           
-             res.render('denuncia-det',data)
-        }
-        )
-        .catch(err =>{
-          console.log('no tiene comentarios')
-          res.render('denuncia-det',data)
+          data = {
+            user: usr,
+            ubicacion: ubicacion,
+            direccion: direccion,
+            images: images,
+            estatus: estatus,
+            _id: _id,
+            titulo: titulo,
+            descripcion: descripcion,
+            categoria: categoria,
+            fecha: fecha,
+            folio: folio,
+            logged,
+            comentarios: coment,
+            logueado,
+            faveds,
+            isFaved
+          };
+
+          res.render("denuncia-det", data);
         })
-        console.log(data);
-       // res.render('denuncia-det', data)
-      })})
+        .catch(err => {
+          console.log("no tiene comentarios", err);
+          res.render("denuncia-det", data);
+        });
+      console.log(data);
+      // res.render('denuncia-det', data)
+    });
+});
 
-
-router.post('/:Folio',aseguraLogueo,(req,res)=>{
+router.post("/:Folio", aseguraLogueo, (req, res) => {
   console.log(req.params, req.url);
-  let{Folio} = req.params;
+  let { Folio } = req.params;
   let user = req.user;
 
-  Denuncia.findOne({folio: Folio}).populate('user').populate('categoria')
-  .then(denuncias=>{
-    let author = req.user._id;
-    let denuncia = denuncias._id
-    let {comentario} = req.body;
-    let datos = {user:author, denuncia:denuncia,comentario:comentario}
-    console.log(datos);
-    Comentario.create(datos)
-    .then(() => {
-      res.redirect("/denuncia/" + Folio);
-      })
-})
-})
-
-
+  Denuncia.findOne({ folio: Folio })
+    .populate("user")
+    .populate("categoria")
+    .then(denuncias => {
+      let author = req.user._id;
+      let denuncia = denuncias._id;
+      let { comentario } = req.body;
+      let datos = { user: author, denuncia: denuncia, comentario: comentario };
+      console.log(datos);
+      Comentario.create(datos).then(() => {
+        res.redirect("/denuncia/" + Folio);
+      });
+    });
+});
 
 module.exports = router;

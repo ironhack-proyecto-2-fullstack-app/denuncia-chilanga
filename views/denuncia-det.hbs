@@ -49,33 +49,29 @@
       </div>
       <div>
         <label for="Direccion">Dirección:</label>
-        <input type="text" value="{{direccion}}" id="denuncia-det-dir" disabled>
+        <input type="text" value="{{direccion}}" name="direccion" id="denuncia-det-dir" disabled>
       </div>
-  
-      </form>
-    {{#if comentarios}}Comentarios:{{/if}}
-      {{#each comentarios as |C|}}
-      <div>
-        {{C.user.nombre}} {{C.user.apellido}} ({{C.createdAt}}): 
-        <div>{{C.comentario}}</div>
-        {{#if C.edit}} <a href ="/comentarios/{{C._id}}/edit"><button >Editar</button></a>{{/if}}
-      </div>
-      {{/each}}
 
-      {{#if logged}}
+    </form>
+    {{#if comentarios}}Comentarios:{{/if}}
+    {{#each comentarios as |C|}}
     <div>
-      <form method="POST" >
-      <textarea name="comentario" cols="60" rows="5" placeholder="Escribe tu comentario aquí"></textarea>
-      <button "submit"> comentar </button>
+      {{C.user.nombre}} {{C.user.apellido}} ({{C.createdAt}}):
+      <div>{{C.comentario}}</div>
+      {{#if C.edit}} <a href="/comentarios/{{C._id}}/edit"><button>Editar</button></a>{{/if}}
+    </div>
+    {{/each}}
+    {{#if logged}}
+    <div>
+      <form method="POST" class="form-comentario">
+        <textarea name="comentario" cols="60" rows="5" placeholder="Escribe tu comentario aquí"></textarea>
+        <button "submit">Comentar</button>
       </form>
     </div>
-      {{/if}}
-
-
-      <div>
-        <img src={{images.[0]}} style="width: 200px; height: auto;"></img>
-      </div>
-
+    {{/if}}
+    <div>
+      <img src={{images.[0]}} style="width: 200px; height: auto;"></img>
+    </div>
     </form>
   </div>
 </div>
