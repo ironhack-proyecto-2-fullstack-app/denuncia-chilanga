@@ -32,12 +32,17 @@
     {{/if}}
     <a href="/denuncia">Busca una denuncia</a>
   </nav>
-  
+
   {{{body}}}
 
-<footer>
-  <p>Powered by: Domingo y Tomás</p>
-</footer>
+  <footer>
+    <p>Powered by: Domingo y Tomás</p>
+    {{#if user}}
+    <p>
+      <a href="/logout">Logout</a>
+    </p>
+    {{/if}}
+  </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -51,4 +56,5 @@
   <script src="/javascripts/script.js"></script>
 
 </body>
+
 </html>
