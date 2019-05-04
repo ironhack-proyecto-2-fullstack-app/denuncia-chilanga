@@ -54,6 +54,12 @@ footer {
 footer p {
   margin: 5px 10px 5px 10px; }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
 .navbar a {
   font-size: 20px; }
 
