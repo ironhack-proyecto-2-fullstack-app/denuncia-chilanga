@@ -27,18 +27,18 @@
         <button><a href="/categoria">Categorias</a></button>
     </div>
     {{/if}}
-    {{#if user.home}}
-    <button><a href="/mis-denuncias/{{user.id}}">Mis denuncias</a></button>
-    {{/if}}
+
+    <br>
 
     <button><a href="/graph">Estadísticas</a></button>
-    
-      {{#if user.home}}
-      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-        <canvas id="myChart" width="600" height="200"></canvas>
-   
-       <script>
-         var ctx = document.getElementById('myChart').getContext('2d');
+    <br><br>
+
+    {{#if user.home}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <canvas id="myChart" width="600" height="200"></canvas>
+
+    <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
 
       var chart = new Chart(ctx, {
         // The type of chart we want to create
@@ -59,6 +59,6 @@
         options: {}
       });
     </script>
-    
+
     {{/if}}
   </div>
