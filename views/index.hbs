@@ -39,7 +39,7 @@
     
       {{#if user.home}}
       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="myChart" width="600" height="200"></canvas>
    
        <script>
          var ctx = document.getElementById('myChart').getContext('2d');
@@ -50,12 +50,12 @@
 
         // The data for our dataset
         data: {
-          labels: ["{{fechas.[0]}}", "{{fechas.[1]}}", "{{fechas.[2]}}", "{{fechas.[3]}}", "{{fechas.[4]}}", "{{fechas.[5]}}", "{{fechas.[6]}}"],
+          labels: ["{{fechas.[6]}}", "{{fechas.[5]}}", "{{fechas.[4]}}", "{{fechas.[3]}}", "{{fechas.[2]}}", "{{fechas.[1]}}", "{{fechas.[0]}}"],
           datasets: [{
             label: 'Actividad de los últimos 7 días',
             backgroundColor: '{{color_graph}}',
             borderColor: '{{color_graph}}',
-            data: ["{{vals.[0]}}", "{{vals.[1]}}", "{{vals.[2]}}", "{{vals.[3]}}", "{{vals.[4]}}", "{{vals.[5]}}", "{{vals.[6]}}"]
+            data: ["{{vals.[6]}}", "{{vals.[5]}}", "{{vals.[4]}}", "{{vals.[3]}}", "{{vals.[2]}}", "{{vals.[1]}}", "{{vals.[0]}}"]
           }]
         },
 
